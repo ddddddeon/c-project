@@ -9,12 +9,14 @@ int set_keyval(keyval_t* obj, char* key, char* val) {
 
     memcpy(obj->key, key, strlen(key));
     memcpy(obj->val, val, strlen(val));
+
     return 0;
 }
 
 int destroy_keyval(keyval_t* obj) {
     free(obj->key);
     free(obj->val);
+    
     return 0;
 }
 
