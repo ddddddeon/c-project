@@ -22,6 +22,6 @@ test: findBin
 	bin/sr programmerhumor 1; \
 	bin/sr programmerhumorasdfasdfasdflkajshdflkjashdlkfjhasldkjfhalskdjfhlaskdjfhlaksdjfhlaksjdhflakjsdhflaksjdhflaksjdhflkajsdhflkajsdhflkjasdhflkajsdhflkjasdhflkjasdhflkjasdhflkjasdhflkjashdflkjasdhflkjasdhflkajsdhflkajsdhflkajsdhflkajsdhflkjashdflkjashdflkjahsdflkjhasdlfkjhasdlkfjhasdlkfjhaslkdjfhlaksdjfhlkasdjfhlkasjdhflkasjdhflkasjdfhlkasjdhflkasdjhflkajsdhf 1 || true;
 
-all: clean $(NAME) findBin test
+all: $(NAME) findBin test
 
 rebuild: clean $(NAME)
