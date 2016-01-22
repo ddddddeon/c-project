@@ -28,6 +28,6 @@
 
 #define hklog(...) hk_log(__FUNCTION__, __VA_ARGS__)
 
-void hk_log(const char* caller, int level, char* format, ...);
+void hk_log(const char *caller, int level, char* format, ...);
 
 #endif /* !LOG_H */

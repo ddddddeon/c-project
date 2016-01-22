@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <string.h>
 
-void hk_log(const char* caller, int level, char *format, ...) {
+void hk_log(const char *caller, int level, char *format, ...) {
   va_list args;
   char *color;
   char *color_bold;
