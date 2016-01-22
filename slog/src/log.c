@@ -4,7 +4,6 @@
 #include <syslog.h>
 #include <stdlib.h>
 
-
 int slog_interactive() {
   for (;;) {
     char* input = malloc(128);
@@ -18,5 +17,5 @@ int slog_interactive() {
 
 int slog(int level, char* message) {
   syslog(level, "%s\n", message);
-  return 1;
+  return 0;
 }
