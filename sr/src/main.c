@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
   int limit;
 
   if (argc < 2) {
-    printf("no subreddit specified D:");
+    hklog(HK_ERR, "no subreddit specified D:");
     return 1;
   }
   
@@ -20,17 +20,16 @@ int main(int argc, char* argv[]) {
   }
 
   if (strlen(argv[1]) > SR_STRING_LIMIT) {
-      printf("subreddit name too long, must be < %d", SR_STRING_LIMIT);
-      return 1;
+    hklog(HK_ERR,"subreddit name too long, must be < %d", SR_STRING_LIMIT);
+    return 1;
   } 
     
   subreddit = argv[1];
 
 #ifdef DEBUG
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
-
 #endif
-  
+
   sr_getsubreddit(subreddit, limit);
 
   return 0;
