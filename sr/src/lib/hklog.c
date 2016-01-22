@@ -12,15 +12,15 @@ void hk_log(const char *caller, int level, char *format, ...) {
   char prefix[HK_LOGPREFIX_LENGTH];
 
   switch (level) {
-    case HK_INFO:
-      color = HK_CYAN;
-      color_bold = HK_CYAN_BOLD;
-      level_string = "INFO";
-      break;
     case HK_DEBUG:
       color = HK_MAGENTA;
       color_bold = HK_MAGENTA_BOLD;
       level_string = "DEBUG";
+      break;
+    case HK_INFO:
+      color = HK_CYAN;
+      color_bold = HK_CYAN_BOLD;
+      level_string = "INFO";
       break;
     case HK_WARN:
       color = HK_YELLOW;
