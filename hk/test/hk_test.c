@@ -1,4 +1,4 @@
-#include <hk.h>
+#include <hk/log.h>
 
 int main(int argc, char* argv[]) {
   hklog(HK_INFO, "everything is fine%s\n", "!");

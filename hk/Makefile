@@ -14,8 +14,9 @@ $(NAME):
 	$(CC) -shared -o bin/lib$(NAME).so bin/$(NAME).o; \
 
 install:
+	[ -d /usr/include/hk ] || mkdir /usr/include/hk; \
 	cp bin/lib$(NAME).so /usr/lib/lib$(NAME).so; \
-	cp $(HEADERS) /usr/include/
+	cp $(HEADERS) /usr/include/hk/
 
 clean:
 	@( [ -d bin ] && rm -rf bin ) || true;
