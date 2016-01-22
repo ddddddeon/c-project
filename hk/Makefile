@@ -13,7 +13,9 @@ $(NAME):
 	$(CC) $(CFLAGS) -c -fPIC $(INFILES) -o bin/$(NAME).o; \
 	$(CC) -shared -o bin/lib$(NAME).so bin/$(NAME).o; \
 
-install:
+install: 
+	set -e; \
+	[ -d bin ];
 	[ -d /usr/include/hk ] || mkdir /usr/include/hk; \
 	cp bin/lib$(NAME).so /usr/lib/lib$(NAME).so; \
 	cp $(HEADERS) /usr/include/hk/
