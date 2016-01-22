@@ -1,15 +1,16 @@
 NAME=hk
-ARGS=-DDEBUG
+CFLAGS=-DDEBUG -Wall -Werror
 
 CC=gcc
 INFILES=$(wildcard src/*.c)
 HEADERS=$(wildcard src/*.h)
 
 $(NAME): 
+	set -e;
 	rm src/*~ src/\#* 2>/dev/null; \
 	if [ ! -d bin ]; then mkdir bin; fi; \
-	$(CC) -c -fPIC $(INFILES) -o bin/$(NAME).o; \
-	$(CC) -shared -o bin/lib$(NAME).so bin/$(NAME).o;
+	$(CC) $(CFLAGS) -c -fPIC $(INFILES) -o bin/$(NAME).o; \
+	$(CC) -shared -o bin/lib$(NAME).so bin/$(NAME).o; \
 
 install:
 	cp bin/lib$(NAME).so /usr/lib/lib$(NAME).so; \
