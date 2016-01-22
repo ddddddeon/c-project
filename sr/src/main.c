@@ -5,6 +5,10 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifndef CURLE_OK
+#define CURLE_OK 0
+#endif
+
 int main(int argc, char* argv[]) {
   char* subreddit;
   int limit;
@@ -32,7 +36,7 @@ int main(int argc, char* argv[]) {
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
 #endif
   
-  if ((res = sr_getsubreddit(subreddit, limit)) > 0) {
+  if ((res = sr_getsubreddit(subreddit, limit)) > CURLE_OK) {
       hklog(HK_ERR, "could not get url, curl return code %d\n", res);    
     return 1;
   }

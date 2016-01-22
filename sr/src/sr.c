@@ -15,7 +15,7 @@ int sr_geturl(char *url) {
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
-    if ((res = curl_easy_perform(curl)) > 0) {
+    if ((res = curl_easy_perform(curl)) > CURLE_OK) {
       return (int) res;
     }
 
@@ -41,7 +41,7 @@ int sr_getsubreddit(char *subreddit, int limit) {
   hklog(HK_DEBUG, "constructed url: %s\n", url);
 #endif
   
-  if ((res = sr_geturl(url)) > 0) {
+  if ((res = sr_geturl(url)) > CURLE_OK) {
     return (int) res;
   }
   return 0;

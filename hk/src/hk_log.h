@@ -7,6 +7,9 @@
 #define HK_ERR 4
 #define HK_FATAL 5
 
+#define HK_OK 0
+#define HK_NOK 1
+
 #define HK_RED "\033[22;31m"
 #define HK_GREEN "\033[22;32m"
 #define HK_YELLOW "\033[22;33m"
