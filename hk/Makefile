@@ -22,7 +22,8 @@ clean:
 
 tests:
 	$(CC) -o tests $(TESTFILES) -lhk; \
-	./tests; \
+	./tests && \
+	echo "[OK] all tests passed!"; \
 	rm tests;
 
 all: clean $(NAME) tests
