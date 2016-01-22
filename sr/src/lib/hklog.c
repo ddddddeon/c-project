@@ -9,7 +9,7 @@ void hk_log(const char *caller, int level, char *format, ...) {
   char *color;
   char *color_bold;
   char *level_string;
-  char prefix[HK_LOGPREFIX_LENGTH];
+  char prefix[128];
 
   switch (level) {
     case HK_DEBUG:

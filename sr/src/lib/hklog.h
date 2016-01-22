@@ -1,9 +1,6 @@
 #ifndef LOG_H
 #define LOG_H
 
-#define HK_MSGLENGTH_LIMIT 512
-#define HK_LOGPREFIX_LENGTH 128
-
 #define HK_INFO 1
 #define HK_DEBUG 2
 #define HK_WARN 3
