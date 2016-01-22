@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   }
   
   if (argc < 3) {
-    limit = RESULT_LIMIT;
+    limit = SR_RESULT_LIMIT;
   } else {
     limit = atoi(argv[2]);
   }
