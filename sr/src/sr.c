@@ -38,7 +38,7 @@ int sr_getsubreddit(char *subreddit, int limit) {
   sprintf(url, "%s%s%s%d", prefix, subreddit, suffix, limit);
 
 #ifdef DEBUG
-  hklog(HK_DEBUG, "constructed url: %s%s%s%d\n", prefix, subreddit, suffix, limit);
+  hklog(HK_DEBUG, "constructed url: %s\n", url);
 #endif
   
   if ((res = sr_geturl(url)) > 0) {
