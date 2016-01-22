@@ -7,6 +7,7 @@
 int main(int argc, char* argv[]) {
   char* subreddit;
   int limit;
+  int sr_res;
 
   if (argc < 2) {
     hklog(HK_ERR, "no subreddit specified D:\n");
@@ -30,7 +31,11 @@ int main(int argc, char* argv[]) {
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
 #endif
 
-  sr_getsubreddit(subreddit, limit);
+  sr_res = sr_getsubreddit(subreddit, limit);
+  if (sr_res > 0) {
+      hklog(HK_ERR, "could not get url, curl return code %d\n", sr_res);    
+    return 1;
+  }
 
   return 0;
 }
