@@ -5,10 +5,6 @@
 #include <string.h>
 #include <curl/curl.h>
 
-size_t function_pt(void *ptr, size_t size, size_t nmemb, void *stream) {
-  printf("%d\n", atoi(ptr));
-}
-
 int sr_geturl(char *url) {
   CURL *curl;
   CURLcode res;
@@ -27,6 +23,7 @@ int sr_geturl(char *url) {
     curl_easy_cleanup(curl);
     return 0;
   } else {
+    hklog(HK_ERR, "unknown curl init error\n");
     return 1;
   }
 }

@@ -8,7 +8,6 @@
 #define SR_URL_PREFIX "http://reddit.com/r/"
 #define SR_URL_SUFFIX "/new.json?sort=new&limit="
 
-size_t function_pt(void *ptr, size_t size, size_t nmemb, void *stream);
 int sr_geturl(char* url);
 int sr_getsubreddit(char* subreddit, int limit);
 
