@@ -27,8 +27,9 @@ clean:
 	@( [ -d bin ] && rm -rf bin ) || true;
 
 tests:
-	@echo "[*] running tests..."; \
+	@echo "[*] compiling tests..."; \
 	$(CC) -o tests $(TESTFILES) -lhk; \
+	echo "[*] running tests..."; \
 	./tests && \
 	echo "[OK] all tests passed!"; \
 	rm tests;
