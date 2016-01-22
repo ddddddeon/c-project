@@ -13,4 +13,15 @@ $(NAME):
 	$(CC) -o $(OUTFILE) $(INFILES) $(CFLAGS)
 
 clean:
-	@rm -rf bin;
+	@rm -rf bin || true;
+
+findBin:
+	@[ -d bin ];
+
+test: findBin
+	bin/sr programmerhumor 1; \
+	bin/sr programmerhumorasdfasdfasdflkajshdflkjashdlkfjhasldkjfhalskdjfhlaskdjfhlaksdjfhlaksjdhflakjsdhflaksjdhflaksjdhflkajsdhflkajsdhflkjasdhflkajsdhflkjasdhflkjasdhflkjasdhflkjasdhflkjashdflkjasdhflkjasdhflkajsdhflkajsdhflkajsdhflkajsdhflkjashdflkjashdflkjahsdflkjhasdlfkjhasdlkfjhasdlkfjhaslkdjfhlaksdjfhlkasdjfhlkasjdhflkasjdhflkasjdfhlkasjdhflkasdjhflkajsdhf 1 || true;
+
+all: clean $(NAME) findBin test
+
+rebuild: clean $(NAME)
