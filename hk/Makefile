@@ -16,4 +16,4 @@ install:
 	cp $(HEADERS) /usr/include/
 
 clean:
-	rm -rf bin;
+	@rm -rf bin;
