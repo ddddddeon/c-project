@@ -22,7 +22,7 @@ int sr_geturl(char *url) {
     printf("\n");
 
 #ifdef DEBUG
-    hklog(HK_DEBUG, "%d\n", res);
+    hklog(HK_DEBUG, "curl return code: %d\n", res);
 #endif
 
     curl_easy_cleanup(curl);
