@@ -7,7 +7,7 @@
 int main(int argc, char* argv[]) {
   char* subreddit;
   int limit;
-  int sr_res;
+  int res;
 
   if (argc < 2) {
     hklog(HK_ERR, "no subreddit specified D:\n");
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   }
   
   if (argc < 3) {
-    limit = SR_RESULT_LIMIT;
+    limit = RESULT_LIMIT;
   } else {
     limit = atoi(argv[2]);
   }
@@ -31,9 +31,14 @@ int main(int argc, char* argv[]) {
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
 #endif
   
-  if ((sr_res = sr_getsubreddit(subreddit, limit)) > 0) {
-      hklog(HK_ERR, "could not get url, curl return code %d\n", sr_res);    
+  if ((res = sr_getsubreddit(subreddit, limit)) > 0) {
+      hklog(HK_ERR, "could not get url, curl return code %d\n", res);    
     return 1;
   }
+
+#ifdef DEBUG
+  hklog(HK_DEBUG, "curl return code: %d\n", res);
+#endif
+
   return 0;
 }
