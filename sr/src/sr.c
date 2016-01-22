@@ -14,8 +14,8 @@ int sr_geturl(char *url) {
   CURLcode res;
 
   curl_global_init(CURL_GLOBAL_ALL);
-  curl = curl_easy_init();
-  if (curl) {
+
+  if ((curl = curl_easy_init()) != NULL) {
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
@@ -26,6 +26,8 @@ int sr_geturl(char *url) {
     printf("\n");
     curl_easy_cleanup(curl);
     return 0;
+  } else {
+    return 1;
   }
 }
 
