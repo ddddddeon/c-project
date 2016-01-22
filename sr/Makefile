@@ -18,10 +18,10 @@ clean:	findBin
 findBin:
 	@[ -d bin ];
 
-test: findBin
+tests: findBin
 	bin/sr programmerhumor 1; \
 	bin/sr programmerhumorasdfasdfasdflkajshdflkjashdlkfjhasldkjfhalskdjfhlaskdjfhlaksdjfhlaksjdhflakjsdhflaksjdhflaksjdhflkajsdhflkajsdhflkjasdhflkajsdhflkjasdhflkjasdhflkjasdhflkjasdhflkjashdflkjasdhflkjasdhflkajsdhflkajsdhflkajsdhflkajsdhflkjashdflkjashdflkjahsdflkjhasdlfkjhasdlkfjhasdlkfjhaslkdjfhlaksdjfhlkasdjfhlkasjdhflkasjdhflkasjdfhlkasjdhflkasdjhflkajsdhf 1 || true;
 
-all: $(NAME) findBin test
+all: $(NAME) findBin tests
 
 rebuild: clean $(NAME)
