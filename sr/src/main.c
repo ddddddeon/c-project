@@ -30,12 +30,10 @@ int main(int argc, char* argv[]) {
 #ifdef DEBUG
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
 #endif
-
-  sr_res = sr_getsubreddit(subreddit, limit);
-  if (sr_res > 0) {
+  
+  if ((sr_res = sr_getsubreddit(subreddit, limit)) > 0) {
       hklog(HK_ERR, "could not get url, curl return code %d\n", sr_res);    
     return 1;
   }
-
   return 0;
 }
