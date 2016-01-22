@@ -29,5 +29,5 @@ tests:
 	echo "[OK] all tests passed!"; \
 	rm tests;
 
-all: clean $(NAME) install tests
+all: clean $(NAME) install tests clean
 
