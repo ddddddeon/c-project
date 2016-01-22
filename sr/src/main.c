@@ -1,6 +1,6 @@
 #include "sr.h"
-#include "lib/hklog.h"
 
+#include <hk.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
   }
 
   if (strlen(argv[1]) > SR_STRING_LIMIT) {
-    hklog(HK_ERR,"subreddit name too long, must be < %d\n", SR_STRING_LIMIT);
+    hklog(HK_ERR, "subreddit name too long, must be < %d\n", SR_STRING_LIMIT);
     return 1;
   } 
     

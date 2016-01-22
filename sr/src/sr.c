@@ -1,6 +1,6 @@
 #include "sr.h"
-#include "lib/hklog.h"
 
+#include <hk.h>
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>
