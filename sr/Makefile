@@ -12,8 +12,8 @@ $(NAME):
 	if [ ! -d bin ]; then mkdir bin; fi; \
 	$(CC) -o $(OUTFILE) $(INFILES) $(CFLAGS)
 
-clean:
-	@rm -rf bin || true;
+clean:	findBin
+	@rm -rf bin;
 
 findBin:
 	@[ -d bin ];
