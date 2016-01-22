@@ -45,8 +45,7 @@ void hk_log(const char *caller, int level, char *format, ...) {
 
   sprintf(prefix, "%s[%s%s%s][%s%s%s]:%s ",
 	  HK_WHITE_BOLD, color_bold, level_string, HK_WHITE_BOLD,
-	  color, caller, HK_WHITE_BOLD,
-	  HK_UNCOLOR);
+	  color, caller, HK_WHITE_BOLD, HK_UNCOLOR);
 
   printf("%s", prefix);
   va_start(args, format);
