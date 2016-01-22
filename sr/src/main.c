@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
   if (argc < 3) {
     limit = SR_RESULT_LIMIT;
   } else {
-    limit = atoi(argv[2]); //TODO error check
+    limit = atoi(argv[2]);
   }
 
   if (strlen(argv[1]) > SR_STRING_LIMIT) {
@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
 
 #ifdef DEBUG
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
+
 #endif
   
   sr_getsubreddit(subreddit, limit);

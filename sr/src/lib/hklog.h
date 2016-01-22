@@ -2,7 +2,7 @@
 #define LOG_H
 
 #define HK_MSGLENGTH_LIMIT 512
-#define HK_LOGPREFIX_LENGTH 64
+#define HK_LOGPREFIX_LENGTH 128
 
 #define HK_INFO 1
 #define HK_DEBUG 2
@@ -26,6 +26,8 @@
 #define HK_WHITE_BOLD "\033[01;37m"
 #define HK_UNCOLOR "\033[22;0m"
 
-void hklog(int level, char* format, ...);
+#define hklog(...) hk_log(__FUNCTION__, __VA_ARGS__)
+
+void hk_log(const char* caller, int level, char* format, ...);
 
 #endif /* !LOG_H */

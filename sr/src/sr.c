@@ -25,15 +25,15 @@ int sr_geturl(char *url) {
     hklog(HK_DEBUG, "%d\n", res);
 #endif
 
-  curl_easy_cleanup(curl);
-  return 0;
+    curl_easy_cleanup(curl);
+    return 0;
   }
 }
 
 int sr_getsubreddit(char *subreddit, int limit) {
   char *prefix = SR_URL_PREFIX;
   char *suffix = SR_URL_SUFFIX;
-  int url_size = strlen(prefix) + strlen(suffix) + SR_STRING_LIMIT;
+  int url_size = strlen(prefix) + SR_STRING_LIMIT + strlen(suffix);
   char url[url_size];
 
 #ifdef DEBUG
