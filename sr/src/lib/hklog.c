@@ -12,35 +12,35 @@ void hk_log(const char *caller, int level, char *format, ...) {
   char prefix[HK_LOGPREFIX_LENGTH];
 
   switch (level) {
-  case HK_INFO:
-    color = HK_CYAN;
-    color_bold = HK_CYAN_BOLD;
-    level_string = "INFO";
-    break;
-  case HK_DEBUG:
-    color = HK_MAGENTA;
-    color_bold = HK_MAGENTA_BOLD;
-    level_string = "DEBUG";
-    break;
-  case HK_WARN:
-    color = HK_YELLOW;
-    color_bold = HK_YELLOW_BOLD;
-    level_string = "WARN";
-    break;
-  case HK_ERR:
-    color = HK_RED;
-    color_bold = HK_RED_BOLD;
-    level_string = "ERROR";
-    break;
-  case HK_FATAL:
-    color = HK_RED;
-    color_bold = HK_RED_BOLD;
-    level_string = "FATAL";
-    break;
-  default:
-    color = HK_MAGENTA;
-    color_bold = HK_MAGENTA_BOLD;
-    level_string = "LOGGER";
+    case HK_INFO:
+      color = HK_CYAN;
+      color_bold = HK_CYAN_BOLD;
+      level_string = "INFO";
+      break;
+    case HK_DEBUG:
+      color = HK_MAGENTA;
+      color_bold = HK_MAGENTA_BOLD;
+      level_string = "DEBUG";
+      break;
+    case HK_WARN:
+      color = HK_YELLOW;
+      color_bold = HK_YELLOW_BOLD;
+      level_string = "WARN";
+      break;
+    case HK_ERR:
+      color = HK_RED;
+      color_bold = HK_RED_BOLD;
+      level_string = "ERROR";
+      break;
+    case HK_FATAL:
+      color = HK_RED;
+      color_bold = HK_RED_BOLD;
+      level_string = "FATAL";
+      break;
+    default:
+      color = HK_MAGENTA;
+      color_bold = HK_MAGENTA_BOLD;
+      level_string = "LOGGER";
   }
 
   sprintf(prefix, "%s[%s%s%s][%s%s%s]:%s ",
