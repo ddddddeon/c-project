@@ -11,9 +11,9 @@ $(NAME):
 	rm src/*~ src/\#* test/*~ test/\#* 2>/dev/null || true; \
 	if [ ! -d bin ]; then mkdir bin; fi; \
 	$(CC) $(CFLAGS) -c -fPIC $(INFILES) -o bin/$(NAME).o; \
-	echo "[OK] created object file"; \
+	echo "[OK] created object file in ./bin/"; \
 	$(CC) -shared -o bin/lib$(NAME).so bin/$(NAME).o; \
-	echo "[OK] created shared object";
+	echo "[OK] created shared object in ./bin/";
 install: 
 	@set -e; \
 	[ -d bin ]; \
@@ -21,7 +21,7 @@ install:
 	cp bin/lib$(NAME).so /usr/lib/lib$(NAME).so; \
 	echo "[OK] shared libraries installed to /usr/lib/"; \
 	cp $(HEADERS) /usr/include/hk/; \
-	echo "[OK] headers installed to /usr/include/hk";
+	echo "[OK] headers installed to /usr/include/hk/";
 
 clean:
 	@( [ -d bin ] && rm -rf bin ) || true;
