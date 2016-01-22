@@ -11,4 +11,4 @@
 int sr_geturl(char* url);
 int sr_getsubreddit(char* subreddit, int limit);
 
-#endif /* SR_H */
+#endif /* !SR_H */
