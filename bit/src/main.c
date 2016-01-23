@@ -28,10 +28,10 @@ int main(int argc, char* argv[]) {
   while (set <= ((VAL_27 * set) + (VAL_25 + VAL_1))) {
     set = (set * VAL_3) + VAL_1;
     printSet(set);
-
   } 
 
   set = ~set;
   printSet(set);
+
   return 0;
 }
