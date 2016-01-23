@@ -16,8 +16,8 @@ int main(int argc, char* argv[]) {
   set &= ~VAL_5;
   printf("%s <--- (set&~16)\n", int2bin(set));
 
-  set |= VAL_4;
-  printf("%s <--- (set|8)\n", int2bin(set));  
+  set |= VAL_5;
+  printf("%s <--- (set|16)\n", int2bin(set));  
 
   set >>= VAL_1;
   printf("%s <--- (set>>1)\n", int2bin(set));
