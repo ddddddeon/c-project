@@ -62,7 +62,6 @@ void printSet(unsigned set) {
 
 int main(int argc, char* argv[]) {
   unsigned set = VAL_FULL;
-  unsigned cmp_set;
 
   printf("%s\n", int2bin(set));
 
