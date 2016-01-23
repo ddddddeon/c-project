@@ -20,7 +20,7 @@ findBin:
 
 tests: findBin
 	bin/sr programmerhumor 1; \
-	bin/sr programmerhumorasdfasdfasdflkajshdflkjashdlkfjhasldkjfhalskdjfhlaskdjfhlaksdjfhlaksjdhflakjsdhflaksjdhflaksjdhflkajsdhflkajsdhflkjasdhflkajsdhflkjasdhflkjasdhflkjasdhflkjasdhflkjashdflkjasdhflkjasdhflkajsdhflkajsdhflkajsdhflkajsdhflkjashdflkjashdflkjahsdflkjhasdlfkjhasdlkfjhasdlkfjhaslkdjfhlaksdjfhlkasdjfhlkasjdhflkasjdhflkasjdfhlkasjdhflkasdjhflkajsdhf 1 || true;
+	bin/sr programmerhumorasdfasdfasdflkajshdflkjashdlkfjhasldkjfhalskdjfhlaskdj 1 || true;
 
 all: $(NAME) findBin tests
 
