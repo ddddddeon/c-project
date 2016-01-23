@@ -11,13 +11,13 @@ int main(int argc, char* argv[]) {
   printf("%s <--- (~2)\n", int2bin(set));
   
   set &= ~VAL_3;
-  printf("%s <--- (set|~4)\n", int2bin(set));
+  printf("%s <--- (set&~4)\n", int2bin(set));
 
   set &= ~VAL_5;
-  printf("%s <--- (set|~16)\n", int2bin(set));
+  printf("%s <--- (set&~16)\n", int2bin(set));
 
-  set |= VAL_3;
-  printf("%s <--- (set|4)\n", int2bin(set));  
+  set |= VAL_4;
+  printf("%s <--- (set|16)\n", int2bin(set));  
 
   set >>= VAL_1;
   printf("%s <--- (set>>1)\n", int2bin(set));
