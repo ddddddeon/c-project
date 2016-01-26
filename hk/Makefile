@@ -10,9 +10,11 @@ $(NAME):
 	@set -e; \
 	rm src/*~ src/\#* test/*~ test/\#* 2>/dev/null || true; \
 	if [ ! -d bin ]; then mkdir bin; fi; \
-	$(CC) $(CFLAGS) -c -fPIC $(INFILES) -o bin/$(NAME).o; \
+	for file in $(INFILES); do \
+	  $(CC) $(CFLAGS) -c -fPIC $$file -o bin/$$(basename $${file%%.*}).o; \
+	done; \
 	echo "[OK] created object file in ./bin/"; \
-	$(CC) -shared -o bin/lib$(NAME).so bin/$(NAME).o; \
+	$(CC) -shared -o bin/lib$(NAME).so $(wildcard bin/*.o); \
 	echo "[OK] created shared object in ./bin/";
 install: 
 	@set -e; \
