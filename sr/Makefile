@@ -22,6 +22,11 @@ tests: findBin
 	bin/sr programmerhumor 1; \
 	bin/sr programmerhumorasdfasdfasdflkajshdflkjashdlkfjhasldkjfhalskdjfhlaskdj 1 || true;
 
-all: $(NAME) findBin tests
+install:
+	@mv bin/$(NAME) /usr/bin/$(NAME); \
+	chmod a+x /usr/bin/$(NAME); \
+	echo "[OK] installed to /usr/bin/$(NAME)";
 
-rebuild: clean $(NAME)
+all: $(NAME) findBin tests install
+
+rebuild: clean $(NAME) install
