@@ -41,4 +41,9 @@ char* hk_int2bin(unsigned int i);
 void hk_print_bits(unsigned int set);
 int hk_bit_is_set(unsigned set, unsigned int bit_num);
 
+#define IS_1 hk_bit_is_set
+
+#define ASCII_ZERO '0'
+#define CTOI(i) ( i - ASCII_ZERO )
+
 #endif /* !HK_BIT_H */

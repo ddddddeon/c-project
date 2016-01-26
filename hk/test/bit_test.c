@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <hk/hk.h>
+#include <hk/log.h>
+#include <hk/bit.h>
 
 int bit_test(int argc, char* argv[]) {
   unsigned int num1 = 7U;

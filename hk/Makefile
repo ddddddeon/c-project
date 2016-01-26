@@ -7,14 +7,12 @@ TESTFILES=$(wildcard test/*.c)
 HEADERS=$(wildcard src/*.h)
 
 shared: $(NAME)
-	set -e; \
-	for file in $(wildcard bin/*.o); do \
-	  $(CC) -shared -o bin/lib$(NAME).so $${file}; \
-	done; \
+	@set -e; \
+	$(CC) -shared -o bin/lib$(NAME).so $(wildcard bin/*.o); \
 	echo "[OK] created shared object in ./bin/";
 
 $(NAME): 
-	set -e; \
+	@set -e; \
 	rm src/*~ src/\#* test/*~ test/\#* 2>/dev/null || true; \
 	if [ ! -d bin ]; then mkdir bin; fi; \
 	for file in $(INFILES); do \

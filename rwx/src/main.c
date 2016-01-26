@@ -22,6 +22,7 @@ int main(int argc, char* argv[]) {
   hk_print_bits(p.group);
   hk_print_bits(p.all);
 
+  hklog_prefix(HK_INFO);
   check_permissions(p);
 
   return 0;
