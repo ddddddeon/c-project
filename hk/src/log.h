@@ -27,7 +27,9 @@
 #define HK_UNCOLOR "\033[22;0m"
 
 #define hklog(...) hk_log(__FUNCTION__, __VA_ARGS__)
+#define hklog_prefix(...) hk_log_prefix(__FUNCTION__, __VA_ARGS__)
 
-void hk_log(const char *caller, int level, char* format, ...);
+void hk_log(const char *caller, int level, char *format, ...);
+void hk_log_prefix(const char *caller, int level);
 
 #endif /* !HK_LOG_H */

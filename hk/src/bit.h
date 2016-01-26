@@ -39,5 +39,6 @@
 
 char* hk_int2bin(unsigned int i);
 void hk_print_bits(unsigned int set);
+int hk_bit_is_set(unsigned set, unsigned int bit_num);
 
 #endif /* !HK_BIT_H */

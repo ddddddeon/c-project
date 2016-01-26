@@ -1,5 +1,6 @@
 #include "bit.h"
 
+#include <hk/log.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -23,5 +24,10 @@ char* hk_int2bin(unsigned int i) {
 }
 
 void hk_print_bits(unsigned set) {
+  hklog_prefix(HK_INFO);
   printf("%s <--- %u\n", hk_int2bin(set), set);
+}
+
+int hk_bit_is_set(unsigned set, unsigned int bit_num) {
+  return set & bit_num;
 }

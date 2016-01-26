@@ -6,6 +6,14 @@
 
 void hk_log(const char *caller, int level, char *format, ...) {
   va_list args;
+
+  hk_log_prefix(caller, level);
+  va_start(args, format);
+  vprintf(format, args);
+  va_end(args);
+}
+
+void hk_log_prefix(const char* caller, int level) {
   char *color;
   char *color_bold;
   char *level_string;
@@ -48,7 +56,4 @@ void hk_log(const char *caller, int level, char *format, ...) {
 	  color, caller, HK_WHITE_BOLD, HK_UNCOLOR);
 
   printf("%s", prefix);
-  va_start(args, format);
-  vprintf(format, args);
-  va_end(args);
 }
