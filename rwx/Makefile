@@ -9,5 +9,13 @@ $(NAME):
 	if [ ! -d bin ]; then mkdir bin; fi; \
 	$(CC) -o $(OUTFILE) $(INFILES) $(CFLAGS)
 
+install:
+	@mv bin/rwx /usr/bin/$(NAME); \
+	chmod a+x /usr/bin/$(NAME); \
+	echo "[OK] installed to /usr/bin/$(NAME)";
+
 clean:
-	@rm -rf bin;
+	@rm -rf bin/*;
+
+all: clean $(NAME) install
+
