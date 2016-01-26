@@ -17,10 +17,12 @@ int main(int argc, char* argv[]) {
   unsigned int all = CTOI(num[2]);
 
   permissions p = { user, group, all };
-  
+
+#ifdef DEBUG  
   hk_print_bits(p.user);
   hk_print_bits(p.group);
   hk_print_bits(p.all);
+#endif
 
   hklog_prefix(HK_INFO);
   check_permissions(p);

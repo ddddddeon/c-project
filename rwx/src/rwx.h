@@ -5,9 +5,6 @@
 #define WRITE 2U
 #define EXEC 1U
 
-#define ASCII_ZERO '0'
-#define CTOI(i) ( i - ASCII_ZERO )
-
 typedef struct {
   unsigned int user : 3;
   unsigned int group : 3;
