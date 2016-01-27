@@ -5,7 +5,7 @@
 #include "test.h"
 
 int bit_test(int argc, char* argv[]) {
-  unsigned int result = PASS;
+  unsigned int result = HK_PASS;
 
   unsigned int num1 = 7U;
   unsigned int num2 = 1U;
@@ -18,7 +18,7 @@ int bit_test(int argc, char* argv[]) {
     hklog(HK_INFO, "2nd bit is set in integer %d!\n", num1);
   } else {
     hklog(HK_ERR, "2nd bit is not set in integer %d but should be...\n", num1);
-    result = FAIL;
+    result = HK_FAIL;
   }
 
   printf("\n");
@@ -29,7 +29,7 @@ int bit_test(int argc, char* argv[]) {
     hklog(HK_INFO, "2nd bit is not set in integer %d!\n", num2);
   } else {
     hklog(HK_ERR, "2nd bit is set in integer %d but should be...\n", num2);
-    result = FAIL;
+    result = HK_FAIL;
   }
 
   printf("\n");
@@ -43,11 +43,11 @@ int bit_test(int argc, char* argv[]) {
     hk_print_bits(HK_DEBUG, num1);
     if (num1 != 5) {
       hklog(HK_ERR, "%d is not 5!\n");
-      result = FAIL;
+      result = HK_FAIL;
     }
   } else {
     hklog(HK_ERR, "2nd bit was not unset...\n");
-    result = FAIL;
+    result = HK_FAIL;
   }
 
   printf("\n");
@@ -60,11 +60,11 @@ int bit_test(int argc, char* argv[]) {
     hk_print_bits(HK_DEBUG, num2);
     if (num2 != 3) {
       hklog(HK_ERR, "%d is not 5!\n");
-      result = FAIL;
+      result = HK_FAIL;
     }
   } else {
     hklog(HK_ERR, "2nd bit was not set...\n");
-    result = FAIL;
+    result = HK_FAIL;
   }
 
   printf("\n");

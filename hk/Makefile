@@ -36,6 +36,7 @@ clean:
 
 tests:
 	@echo "[*] compiling tests..."; \
+	rm test/*~ test/\#* 2>/dev/null || true; \
 	$(CC) -o tests $(TESTFILES) -lhk; \
 	echo "[*] running tests...\n"; \
 	./tests && \

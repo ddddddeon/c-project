@@ -16,5 +16,5 @@ int log_test(int argc, char* argv[]) {
 
   printf("\n");
 
-  return PASS;
+  return HK_PASS;
 }
