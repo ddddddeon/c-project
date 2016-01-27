@@ -2,8 +2,7 @@
 #include <hk/log.h>
 #include <hk/bit.h>
 
-#define PASS 0
-#define FAIL 1
+#include "test.h"
 
 int bit_test(int argc, char* argv[]) {
   unsigned int result = PASS;
