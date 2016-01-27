@@ -1,7 +1,7 @@
+#include "test.h"
+
 #include <stdio.h>
 #include <hk/log.h>
-
-#include "test.h"
 
 int log_test(int argc, char* argv[]) {
   printf("[*] log tests:\n");
