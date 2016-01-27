@@ -1,5 +1,5 @@
 NAME=hk
-CFLAGS=-DDEBUG -Wall -Werror #-DDEBUG
+CFLAGS=-DDEBUG -Wall -Werror -DDEBUG
 
 CC=gcc
 INFILES=$(wildcard src/*.c)
@@ -35,7 +35,7 @@ clean:
 tests:
 	@echo "[*] compiling tests..."; \
 	$(CC) -o tests $(TESTFILES) -lhk; \
-	echo "[*] running tests..."; \
+	echo "[*] running tests...\n"; \
 	./tests && \
 	echo "[OK] all tests passed!"; \
 	rm tests;

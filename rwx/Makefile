@@ -3,7 +3,7 @@ CC=gcc
 OUTFILE=bin/$(NAME)
 INFILES=$(wildcard src/*.c)
 LIBS=-lhk
-CFLAGS=-Wall $(LIBS) #-DDEBUG
+CFLAGS=-Wall $(LIBS) -DDEBUG
 
 $(NAME): 
 	rm src/*~ src/\#* 2>/dev/null; \

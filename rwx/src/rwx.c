@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
 /*
  * from http://stackoverflow.com/questions/1024389/ \
