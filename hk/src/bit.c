@@ -30,21 +30,21 @@ void hk_print_bits(int level, unsigned set) {
 
 int hk_bit_is_set(unsigned set, unsigned int bit_num) {
 #ifdef DEBUG
-  hklog(HK_DEBUG, "%d\n", set & bit_num);
+  hklog(HK_DEBUG, "%u\n", set & bit_num);
 #endif
   return set & bit_num;
 }
 
 void hk_set_bit(unsigned *set, unsigned int bit_num) {
 #ifdef DEBUG
-  hklog(HK_DEBUG, "setting bit %d in integer %d: %d\n", bit_num, *set, *set | bit_num);
+  hklog(HK_DEBUG, "setting bit %u in integer %u: %d\n", bit_num, *set, *set | bit_num);
 #endif
   *set |= bit_num;
 }
 
 void hk_unset_bit(unsigned *set, unsigned int bit_num) {
 #ifdef DEBUG
-  hklog(HK_DEBUG, "unsetting bit %d in integer %d: %d\n", bit_num, *set, *set & ~bit_num);
+  hklog(HK_DEBUG, "unsetting bit %u in integer %u: %u\n", bit_num, *set, *set & ~bit_num);
 #endif
   *set &= ~bit_num;
 }
