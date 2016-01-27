@@ -1,7 +1,7 @@
 CC=gcc
 INFILES=$(wildcard src/*.c)
 OUTFILE=./bin/keyval
-LIBS=
+LIBS=-lhk
 
 keyval:
 	rm src/*~ src/\#* 2>/dev/null; \

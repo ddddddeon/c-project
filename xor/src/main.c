@@ -1,8 +1,6 @@
 #include "xor.h"
 
-#include <stdio.h>
 #include <hk/log.h>
-
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {

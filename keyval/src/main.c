@@ -1,12 +1,12 @@
 #include "keyval.h"
 
-#include <stdio.h>
+#include <hk/log.h>
 
 int main(int argc, char* argv[]) {
     keyval_t kv;
 
     if (argc < 3) {
-        printf("Usage: keyval key val\n");
+        hklog(HK_ERR, "Usage: keyval key val\n");
         return 1;
     }
     
@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     char* val = argv[2];
 
     set_keyval(&kv, key, val);
-    printf("%s: %s\n", kv.key, kv.val);
+    hklog(HK_INFO, "%s: %s\n", kv.key, kv.val);
 
     destroy_keyval(&kv);
 
