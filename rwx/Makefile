@@ -11,7 +11,7 @@ $(NAME):
 	$(CC) -o $(OUTFILE) $(INFILES) $(CFLAGS)
 
 install:
-	@mv bin/rwx /usr/bin/$(NAME); \
+	@mv bin/$(NAME) /usr/bin/$(NAME); \
 	chmod a+x /usr/bin/$(NAME); \
 	echo "[OK] installed to /usr/bin/$(NAME)";
 
