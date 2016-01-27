@@ -5,6 +5,7 @@
 
 int main(int argc, char* argv[]) {
   int result = PASS;
+
   if (log_test() != PASS) {
     hklog(HK_ERR, "log tests failing...!\n");
     result = FAIL;
