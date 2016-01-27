@@ -20,8 +20,6 @@ $(NAME):
 	done; \
 	echo "[OK] created object file(s) in ./bin/"; 
 
-
-
 install: 
 	@set -e; \
 	[ -d bin ]; \
@@ -42,5 +40,5 @@ tests:
 	echo "[OK] all tests passed!"; \
 	rm tests;
 
-all: $(NAME) install tests clean
+all: $(NAME) shared install tests clean
 
