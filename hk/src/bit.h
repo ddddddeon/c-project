@@ -38,7 +38,7 @@
 #define HK_BIT_FULL (HK_BIT_32 - 1U) | HK_BIT_32
 
 char* hk_int2bin(unsigned int i);
-void hk_print_bits(unsigned int set);
+void hk_print_bits(int level, unsigned int set);
 int hk_bit_is_set(unsigned set, unsigned int bit_num);
 
 #define IS_1 hk_bit_is_set

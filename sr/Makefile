@@ -1,6 +1,6 @@
 NAME=sr
 LIBS=-lcurl -lhk
-CFLAGS=-DDEBUG -Wall -Werror $(LIBS)
+CFLAGS=-Wall -Werror $(LIBS) #-DDEBUG
 
 CC=gcc
 OUTFILE=bin/$(NAME)

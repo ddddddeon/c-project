@@ -1,5 +1,5 @@
 NAME=hk
-CFLAGS=-DDEBUG -Wall -Werror
+CFLAGS=-DDEBUG -Wall -Werror #-DDEBUG
 
 CC=gcc
 INFILES=$(wildcard src/*.c)

@@ -23,8 +23,8 @@ char* hk_int2bin(unsigned int i) {
   return str;
 }
 
-void hk_print_bits(unsigned set) {
-  hklog_prefix(HK_INFO);
+void hk_print_bits(int level, unsigned set) {
+  hklog_prefix(level);
   printf("%s <--- %u\n", hk_int2bin(set), set);
 }
 

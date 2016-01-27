@@ -19,9 +19,9 @@ int main(int argc, char* argv[]) {
   permissions p = { user, group, all };
 
 #ifdef DEBUG  
-  hk_print_bits(p.user);
-  hk_print_bits(p.group);
-  hk_print_bits(p.all);
+  hk_print_bits(HK_DEBUG, p.user);
+  hk_print_bits(HK_DEBUG, p.group);
+  hk_print_bits(HK_DEBUG, p.all);
 #endif
 
   hklog_prefix(HK_INFO);
