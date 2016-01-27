@@ -1,6 +1,6 @@
-#include <hk/log.h>
-
 #include "test.h"
+
+#include <hk/log.h>
 
 int main(int argc, char* argv[]) {
   int result = HK_PASS;

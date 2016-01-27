@@ -1,8 +1,8 @@
+#include "test.h"
+
 #include <stdio.h>
 #include <hk/log.h>
 #include <hk/bit.h>
-
-#include "test.h"
 
 int bit_test(int argc, char* argv[]) {
   unsigned int result = HK_PASS;
