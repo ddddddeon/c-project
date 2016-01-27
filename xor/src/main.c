@@ -1,6 +1,7 @@
 #include "xor.h"
 
 #include <hk/log.h>
+#include <hk/bit.h>
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -16,7 +17,13 @@ int main(int argc, char *argv[]) {
 
         xor_stateful(&num3, num1, num2);
         hklog(HK_INFO, "xor_stateful(%d, %d): %d\n", num1, num2, num3);
-        
+
+#ifdef DEBUG
+        hk_print_bits(HK_DEBUG, num1);
+        hk_print_bits(HK_DEBUG, num2);
+        hk_print_bits(HK_DEBUG, num3);
+#endif
+
         return 0;
     }
 }
