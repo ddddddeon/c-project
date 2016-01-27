@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <hk/log.h>
 
 #include "test.h"
