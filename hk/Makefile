@@ -9,7 +9,7 @@ HEADERS=$(wildcard src/*.h)
 shared: $(NAME)
 	@set -e; \
 	$(CC) -shared -o bin/lib$(NAME).so $(wildcard bin/*.o); \
-	echo "[OK] created shared object in ./bin/\n[*]";
+	echo "[OK] created shared object in ./bin/";
 
 $(NAME): 
 	@set -e; \
@@ -29,7 +29,7 @@ install:
 	cp bin/lib$(NAME).so /usr/lib/lib$(NAME).so; \
 	echo "[OK] shared libraries installed to /usr/lib/"; \
 	cp $(HEADERS) /usr/include/hk/; \
-	echo "[OK] headers installed to /usr/include/hk/\n[*]";
+	echo "[OK] headers installed to /usr/include/hk/";
 
 clean:
 	@( [ -d bin ] && rm -rf bin ) || true;
@@ -37,7 +37,7 @@ clean:
 tests:
 	@echo "[*] compiling tests..."; \
 	$(CC) -o tests $(TESTFILES) -lhk; \
-	echo "[*] running tests...\n[*]"; \
+	echo "[*] running tests...\n"; \
 	./tests && \
 	echo "[OK] all tests passed!"; \
 	rm tests;
