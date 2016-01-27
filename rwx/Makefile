@@ -2,7 +2,7 @@ NAME=rwx
 CC=gcc
 OUTFILE=bin/$(NAME)
 INFILES=$(wildcard src/*.c)
-CFLAGS=-lhk -Wall
+CFLAGS=-lhk -Wall #-DDEBUG
 
 $(NAME): 
 	rm src/*~ src/\#* 2>/dev/null; \
