@@ -11,6 +11,15 @@ shared: $(NAME)
 	$(CC) -shared -o bin/lib$(NAME).so $(wildcard bin/*.o); \
 	echo "[OK] created shared object in ./bin/";
 
+log:
+	@set -e; \
+	echo "[*] compiling log module..."; \
+	if [ ! -d bin ]; then mkdir bin; fi; \
+	$(CC) $(CFLAGS) -c -fPIC src/log.c -o bin/log.o; \
+	echo "[*] created object file bin/log.o"; \
+	$(CC) -shared -o bin/libhk.so bin/log.o; \
+	echo "[*] created shared object in ./bin/"; \
+
 $(NAME): 
 	@set -e; \
 	echo "[*] compiling..."; \
