@@ -39,8 +39,8 @@ tests:
 	rm test/*~ test/\#* 2>/dev/null || true; \
 	$(CC) -o tests $(TESTFILES) -lhk; \
 	echo "[*] running tests...\n"; \
-	./tests && \
-	echo "[OK] all tests passed!"; \
+	( ./tests && echo "[OK] all tests passed!" ) || \
+	echo "[ERR] some tests failing...!"; \
 	rm tests;
 
 all: $(NAME) shared install tests clean
