@@ -28,18 +28,18 @@ int main(int argc, char* argv[]) {
     
   subreddit = argv[1];
 
-#ifdef DEBUG
+  #ifdef DEBUG
   hklog(HK_DEBUG, "subreddit: %s, limit: %d\n", subreddit, limit);
-#endif
+  #endif
   
   if ((res = sr_getsubreddit(subreddit, limit)) > SR_OK) {
       hklog(HK_ERR, "could not get url, curl return code %d\n", res);    
     return SR_NOK;
   }
 
-#ifdef DEBUG
+  #ifdef DEBUG
   hklog(HK_DEBUG, "curl return code: %d\n", res);
-#endif
+  #endif
 
   return SR_OK;
 }

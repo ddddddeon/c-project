@@ -37,9 +37,10 @@ int sr_parse_json(char* sr_blob) {
     if (strstr(token, "kind") != NULL &&
 	(strstr(token, "_") == NULL)) {
       already_found_url = false;
-#ifdef DEBUG
+
+      #ifdef DEBUG
       hklog(HK_DEBUG, "beginning of object. found_url = false\n");
-#endif      
+      #endif      
     } else
 
 
@@ -57,16 +58,16 @@ int sr_parse_json(char* sr_blob) {
 	if (already_found_url == 0) { 
 	  hklog(HK_INFO, "%s\n", token);
 	    already_found_url = true;
-#ifdef DEBUG
+            #ifdef DEBUG
 	    hklog(HK_DEBUG, "matched! found_url = true\n");
-#endif
+            #endif
 	}
       }
       state = SCANNING;
 
-#ifdef DEBUG
+      #ifdef DEBUG
       hklog(HK_DEBUG, "transitioned to state SCANNING\n");
-#endif
+      #endif
     } else
       
 
@@ -78,9 +79,9 @@ int sr_parse_json(char* sr_blob) {
     if (state == FOUND_URL_KEY) {
       state++;
 
-#ifdef DEBUG
+      #ifdef DEBUG
       hklog(HK_DEBUG, "transitioned to state FOUND_COLON\n");
-#endif
+      #endif
     } else
 
 
@@ -91,9 +92,9 @@ int sr_parse_json(char* sr_blob) {
 	strstr(token, "_") == NULL) {
       state++;
 
-#ifdef DEBUG
+      #ifdef DEBUG
       hklog(HK_DEBUG, "transitioned to state FOUND_URL_KEY\n");
-#endif
+      #endif
     }
 
     token = strtok(NULL, SR_DELIM);

@@ -18,10 +18,9 @@ size_t sr_write_callback(void *buf, size_t size, size_t nmemb, void *p) {
   memcpy(response->data + response->offset, buf, size * nmemb);
   response->offset += size * nmemb;
 
-#ifdef DEBUG
-  //  hklog(HK_DEBUG, "%s\n", result->data);
+  #ifdef DEBUG
   hklog(HK_DEBUG, "response data buffer offset: %d\n", response->offset);
-#endif  
+  #endif  
 
   return (size_t) ((size *nmemb));
 }
@@ -58,9 +57,9 @@ int sr_getsubreddit(char *subreddit, int limit) {
   int res;
 
   sprintf(url, "%s%s%s%d", prefix, subreddit, suffix, limit);
-#ifdef DEBUG
+  #ifdef DEBUG
   hklog(HK_DEBUG, "constructed url: %s\n", url);
-#endif
+  #endif
 
   char* buffer = malloc(SR_BUFFER_SIZE);
   if (!buffer) {
@@ -79,9 +78,9 @@ int sr_getsubreddit(char *subreddit, int limit) {
 
   response.data[response.offset] = '\0';
 
-#ifdef DEBUG
+  #ifdef DEBUG
   hklog(HK_DEBUG, "%s\n", response.data);
-#endif
+  #endif
 
   sr_parse_json(response.data);
 
