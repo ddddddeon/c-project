@@ -9,7 +9,7 @@
  * a tokenized set of strings from a subreddit's json object
  * and transitions between SCANNING, FOUND_COLON and FOUND_URL_VALUE states.
  *
- * 0: SCANNING is the default state. when the state is SCANNING and the string
+ * 0: SCANNING is the default state. when in this state and the string
  * "url" appears in the present token, transition to the next state.
  *
  * 1: FOUND_URL_KEY means the present token is a colon because the "url" string was
@@ -18,8 +18,8 @@
  *
  * 2: FOUND_COLON is the state in which the token contains the url value,
  * which always follows the colon after a "url" key. indicate that we have found
- * the right url by setting already_found_url to true, and continue scanning
- * by transitioning back to SCANNING.
+ * the right url by setting already_found_url to true, log the url, and continue
+ * scanning by transitioning back to SCANNING state.
  */
 int sr_parse_json(char* sr_blob) {
   int state = SCANNING;
