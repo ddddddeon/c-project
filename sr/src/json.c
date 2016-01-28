@@ -73,7 +73,6 @@ int sr_parse_json(char* sr_blob) {
     /*  we found a "url" key that doesn't contain an "_",
      *  so transition to the next state, FOUND_URL_KEY.
      */
-
     if ((strstr(token, "url") != NULL) && 
 	strstr(token, "_") == NULL) {
       state++;
