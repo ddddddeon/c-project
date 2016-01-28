@@ -42,6 +42,7 @@ int sr_geturl(char *url, void *p) {
     }
 
     curl_easy_cleanup(curl);
+    curl_global_cleanup();
     return SR_OK;
   } else {
     hklog(HK_ERR, "unknown curl init error\n");
@@ -83,6 +84,7 @@ int sr_getsubreddit(char *subreddit, int limit) {
   #endif
 
   sr_parse_json(response.data);
-
+  
+  free(buffer);
   return SR_OK;
 }
