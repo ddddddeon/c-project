@@ -1,11 +1,32 @@
 #include "sr.h"
+#include "json.h"
 
 #include <hk/log.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
 
-int sr_geturl(char *url) {
+size_t sr_write_callback(void *buf, size_t size, size_t nmemb, void *p) {
+  sr_response_t *response = (sr_response_t *) p;
+  
+  if (response->offset + (size * nmemb) >= SR_BUFFER_SIZE -1) {
+    hklog(HK_ERR, "buffer too small!\n");
+    return 0;
+  }
+
+  memcpy(response->data + response->offset, buf, size * nmemb);
+  response->offset += size * nmemb;
+
+#ifdef DEBUG
+  //  hklog(HK_DEBUG, "%s\n", result->data);
+  hklog(HK_DEBUG, "response data buffer offset: %d\n", response->offset);
+#endif  
+
+  return (size_t) ((size *nmemb));
+}
+
+int sr_geturl(char *url, void *p) {
   CURL *curl;
   CURLcode res;
 
@@ -14,17 +35,18 @@ int sr_geturl(char *url) {
   if ((curl = curl_easy_init()) != NULL) {
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, sr_write_callback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, p);
 
-    if ((res = curl_easy_perform(curl)) > CURLE_OK) {
+    if ((res = curl_easy_perform(curl)) > SR_OK) {
       return (int) res;
     }
 
-    printf("\n");
     curl_easy_cleanup(curl);
-    return 0;
+    return SR_OK;
   } else {
     hklog(HK_ERR, "unknown curl init error\n");
-    return 1;
+    return SR_NOK;
   }
 }
 
@@ -36,13 +58,32 @@ int sr_getsubreddit(char *subreddit, int limit) {
   int res;
 
   sprintf(url, "%s%s%s%d", prefix, subreddit, suffix, limit);
-
 #ifdef DEBUG
   hklog(HK_DEBUG, "constructed url: %s\n", url);
 #endif
+
+  char* buffer = malloc(SR_BUFFER_SIZE);
+  if (!buffer) {
+    hklog(HK_FATAL, "error allocating %d bytes!\n", SR_BUFFER_SIZE);
+    return SR_NOK;
+  }
   
-  if ((res = sr_geturl(url)) > CURLE_OK) {
+  sr_response_t response = {
+    .data = buffer,
+    .offset = 0
+  }; 
+  
+  if ((res = sr_geturl(url, &response)) > SR_OK) {
     return (int) res;
   }
-  return 0;
+
+  response.data[response.offset] = '\0';
+
+#ifdef DEBUG
+  hklog(HK_DEBUG, response.data);
+#endif
+
+  sr_parse_json(response.data);
+
+  return SR_OK;
 }
