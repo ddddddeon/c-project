@@ -38,7 +38,7 @@ int sr_parse_json(char* sr_blob) {
 	(strstr(token, "_") == NULL)) {
       already_found_url = false;
 #ifdef DEBUG
-	    hklog(HK_DEBUG, "beginning of object. found_url = false\n");
+      hklog(HK_DEBUG, "beginning of object. found_url = false\n");
 #endif      
     } else
 
