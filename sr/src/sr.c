@@ -80,7 +80,7 @@ int sr_getsubreddit(char *subreddit, int limit) {
   response.data[response.offset] = '\0';
 
 #ifdef DEBUG
-  hklog(HK_DEBUG, response.data);
+  hklog(HK_DEBUG, "%s\n", response.data);
 #endif
 
   sr_parse_json(response.data);

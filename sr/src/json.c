@@ -48,15 +48,30 @@ int sr_parse_json(char* sr_blob) {
      *  log the url, and set already_found_url to true.
      *  transition back to state SCANNING;
      */
-    if (state == FOUND_COLON) {
+      if (state == FOUND_COLON) {
+
+#ifdef DEBUG
+      hklog(HK_DEBUG, "%s\n", token);
+#endif
+
       if ((strstr(token, "redditmedia") == NULL) && 
            strstr(token, "http") != NULL) {
         if (already_found_url == 0) { 
 	  hklog(HK_INFO, "%s\n", token);
 	  already_found_url = true;
+
+#ifdef DEBUG
+	  hklog(HK_DEBUG, "found_url = true\n");
+#endif
+
        	}
       }
       state = SCANNING;
+
+#ifdef DEBUG
+      hklog(HK_DEBUG, "transitioned to state SCANNING\n");
+#endif
+
     } else
 
 
@@ -67,6 +82,11 @@ int sr_parse_json(char* sr_blob) {
      */
     if (state == FOUND_URL_KEY) {
       state++;
+
+#ifdef DEBUG
+      hklog(HK_DEBUG, "transitioned to state FOUND_COLON\n");
+#endif
+
     } else
 
 
@@ -76,6 +96,12 @@ int sr_parse_json(char* sr_blob) {
     if ((strstr(token, "url") != NULL) && 
 	strstr(token, "_") == NULL) {
       state++;
+
+#ifdef DEBUG
+      hklog(HK_DEBUG, "%s\n", token);
+      hklog(HK_DEBUG, "transitioned to state FOUND_URL_KEY\n");
+#endif
+
     }
 
     token = strtok(NULL, SR_DELIM);
