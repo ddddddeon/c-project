@@ -5,9 +5,9 @@
 #include <string.h>
 
 /*
- * the following is a state machine that goes through
- * a tokenized set of strings from a subreddit's json object
- * and transitions between SCANNING, FOUND_COLON and FOUND_URL_VALUE states.
+ * the following is a state machine that goes through tokenized
+ * strings from a subreddit's json object and transitions between
+ * SCANNING, FOUND_COLON and FOUND_URL_VALUE states.
  *
  * 0: SCANNING is the default state. when in this state and the string
  * "url" appears in the present token, transition to the next state.
