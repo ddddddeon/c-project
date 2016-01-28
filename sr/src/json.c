@@ -58,6 +58,7 @@ int sr_parse_json(char* sr_blob) {
 	if (already_found_url == 0) { 
 	  hklog(HK_INFO, "%s\n", token);
 	    already_found_url = true;
+
             #ifdef DEBUG
 	    hklog(HK_DEBUG, "matched! found_url = true\n");
             #endif
