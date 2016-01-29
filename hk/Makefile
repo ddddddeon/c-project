@@ -31,6 +31,13 @@ install:
 	cp $(HEADERS) /usr/include/hk/; \
 	echo "[OK] headers installed to /usr/include/hk/";
 
+uninstall:
+	@set -e; \
+	REMOVED=false; \
+	[ ! -e /usr/lib/libhk.so ] || ( rm /usr/lib/libhk.so &&  REMOVED=true ); \
+	[ ! -d /usr/include/hk ] ||  ( rm -rf /usr/include/hk && REMOVED=true ); \
+	[ $$REMOVED = false ] || echo "[OK] uninstalled /usr/lib/libhk.so and /usr/include/hk";
+
 clean:
 	@( [ -d bin ] && rm -rf bin ) || true;
 
