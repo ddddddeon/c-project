@@ -34,8 +34,8 @@ install:
 uninstall:
 	@set -e; \
 	REMOVED=false; \
-	[ ! -e /usr/lib/libhk.so ] || ( rm /usr/lib/libhk.so &&  REMOVED=true ); \
-	[ ! -d /usr/include/hk ] ||  ( rm -rf /usr/include/hk && REMOVED=true ); \
+	[ ! -e /usr/lib/libhk.so ] || rm /usr/lib/libhk.so &&  REMOVED=true; \
+	[ ! -d /usr/include/hk ] ||  rm -rf /usr/include/hk && REMOVED=true; \
 	[ $$REMOVED = false ] || echo "[OK] uninstalled /usr/lib/libhk.so and /usr/include/hk";
 
 clean:
