@@ -1,14 +1,13 @@
 #ifndef HK_LOG_H
 #define HK_LOG_H
 
+#include "core.h"
+
 #define HK_INFO 1
 #define HK_DEBUG 2
 #define HK_WARN 3
 #define HK_ERR 4
 #define HK_FATAL 5
-
-#define HK_OK 0
-#define HK_NOK 1
 
 #define HK_RED "\033[22;31m"
 #define HK_GREEN "\033[22;32m"

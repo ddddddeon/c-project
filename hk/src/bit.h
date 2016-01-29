@@ -1,6 +1,8 @@
 #ifndef HK_BIT_H
 #define HK_BIT_H
 
+#include "core.h"
+
 #define HK_BIT_1 1U
 #define HK_BIT_2 2U
 #define HK_BIT_3 4U
