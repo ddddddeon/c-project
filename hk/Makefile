@@ -15,7 +15,7 @@ $(NAME):
 	@set -e; \
 	echo "[*] compiling..."; \
 	rm src/*~ src/\#* test/*~ test/\#* 2>/dev/null || true; \
-	if [ ! -d bin ]; then mkdir bin; fi; \
+	[ -d bin ] || mkdir bin; \
 	for file in $(INFILES); do \
 	  $(CC) $(CFLAGS) -c -fPIC $$file -o bin/$$(basename $${file%%.*}).o; \
 	done; \
