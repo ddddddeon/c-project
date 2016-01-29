@@ -1,6 +1,6 @@
 #include "bit.h"
+#include "log.h"
 
-#include <hk/log.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
