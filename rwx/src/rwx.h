@@ -6,9 +6,9 @@
 #define EXEC 1U
 
 typedef struct {
-  unsigned int user : 3;
-  unsigned int group : 3;
-  unsigned int all : 3;
+    unsigned int user : 3;
+    unsigned int group : 3;
+    unsigned int all : 3;
 } permissions;
 
 void check_permissions(permissions p);
