@@ -27,6 +27,11 @@
 
 #define hklog(...) hk_log(__FUNCTION__, __VA_ARGS__)
 #define hklog_prefix(...) hk_log_prefix(__FUNCTION__, __VA_ARGS__)
+#define hkinfo(...) hklog(HK_INFO, __VA_ARGS__)
+#define hkdebug(...) hklog(HK_DEBUG, __VA_ARGS__)
+#define hkwarn(...) hklog(HK_WARN, __VA_ARGS__)
+#define hkerr(...) hklog(HK_ERR, __VA_ARGS__)
+#define hkfatal(...) hklog(HK_FATAL, __VA_ARGS__); 
 
 void hk_log(const char *caller, int level, char *format, ...);
 void hk_log_prefix(const char *caller, int level);
