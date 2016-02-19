@@ -11,7 +11,7 @@ size_t sr_write_callback(void *buf, size_t size, size_t nmemb, void *p) {
     sr_response_t *response = (sr_response_t *) p;
     
     if (response->offset + (size * nmemb) >= SR_BUFFER_SIZE -1) {
-	hkerr("buffer too small!\n");
+	hk_err("buffer too small!\n");
 	return 0;
     }
     
@@ -19,7 +19,7 @@ size_t sr_write_callback(void *buf, size_t size, size_t nmemb, void *p) {
     response->offset += size * nmemb;
     
 #ifdef DEBUG
-    hkdebug("response data buffer offset: %d\n", response->offset);
+    hk_debug("response data buffer offset: %d\n", response->offset);
 #endif  
     
     return (size_t) ((size *nmemb));
@@ -45,7 +45,7 @@ int sr_geturl(char *url, void *p) {
 	curl_global_cleanup();
 	return SR_OK;
     } else {
-	hkerr("unknown curl init error\n");
+	hk_err("unknown curl init error\n");
 	return SR_NOK;
     }
 }
@@ -59,12 +59,12 @@ int sr_getsubreddit(char *subreddit, int limit) {
     
     sprintf(url, "%s%s%s%d", prefix, subreddit, suffix, limit);
 #ifdef DEBUG
-    hkdebug("constructed url: %s\n", url);
+    hk_debug("constructed url: %s\n", url);
 #endif
     
     char* buffer = malloc(SR_BUFFER_SIZE);
     if (!buffer) {
-	hkfatal("error allocating %d bytes!\n", SR_BUFFER_SIZE);
+	hk_fatal("error allocating %d bytes!\n", SR_BUFFER_SIZE);
 	return SR_NOK;
     }
     
@@ -80,7 +80,7 @@ int sr_getsubreddit(char *subreddit, int limit) {
     response.data[response.offset] = '\0';
     
 #ifdef DEBUG
-    hkdebug("%s\n", response.data);
+    hk_debug("%s\n", response.data);
 #endif
     
     sr_parse_json(response.data);
