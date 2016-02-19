@@ -22,83 +22,82 @@
  * scanning by transitioning back to SCANNING state.
  */
 int sr_parse_json(char* sr_blob) {
-  int state = SCANNING;
-  int already_found_url = true;
-
-  char* token = strtok(sr_blob, SR_DELIM);
-  while (token != NULL) {
-
-    /* 
-     *  we know this is the start of a new object if the 
-     *  '"kind": ...' key/value appears in the token, as 
-     *  this is a top-level property. reset "already_found_url"
-     *  to false, and continue scanning tokens.
-     */
-    if (strstr(token, "kind") != NULL &&
-        strstr(token, "_") == NULL) {
-      already_found_url = false;
-
-      #ifdef DEBUG
-      hklog(HK_DEBUG, "beginning of object. found_url = false\n");
-      #endif      
-    } else
-
-
-    /*
-     *  we found a colon after finding the "url" key, so 
-     *  we are now at the "url" key's value.
-     *  if the url is not a thumbnail or otherwise unneeded,
-     *  assuming we have not already found the url in this object,
-     *  log the url, and set already_found_url to true.
-     *  transition back to state SCANNING;
-     */
-    if (state == FOUND_COLON) {
-      if ((strstr(token, "redditmedia") == NULL) && 
-	         strstr(token, "http") != NULL) {
-        if (already_found_url == 0) { 
-          hklog(HK_INFO, "%s\n", token);
-	        already_found_url = true;
-
-          #ifdef DEBUG
-	        hklog(HK_DEBUG, "matched! found_url = true\n");
-          #endif
+    int state = SCANNING;
+    int already_found_url = true;
+    
+    char* token = strtok(sr_blob, SR_DELIM);
+    while (token != NULL) {
+	
+	/* 
+	 *  we know this is the start of a new object if the 
+	 *  '"kind": ...' key/value appears in the token, as 
+	 *  this is a top-level property. reset "already_found_url"
+	 *  to false, and continue scanning tokens.
+	 */
+	if (strstr(token, "kind") != NULL &&
+	    strstr(token, "_") == NULL) {
+	    already_found_url = false;
+	    
+#ifdef DEBUG
+	    hklog(HK_DEBUG, "beginning of object. found_url = false\n");
+#endif      
+	} else
+	    
+	/*
+	 *  we found a colon after finding the "url" key, so 
+	 *  we are now at the "url" key's value.
+	 *  if the url is not a thumbnail or otherwise unneeded,
+	 *  assuming we have not already found the url in this object,
+	 *  log the url, and set already_found_url to true.
+	 *  transition back to state SCANNING;
+	 */
+	if (state == FOUND_COLON) {
+	    if ((strstr(token, "redditmedia") == NULL) && 
+		  strstr(token, "http") != NULL) {
+		if (already_found_url == 0) { 
+		    hklog(HK_INFO, "%s\n", token);
+		    already_found_url = true;
+		    
+#ifdef DEBUG
+		    hklog(HK_DEBUG, "matched! found_url = true\n");
+#endif
+		}
+	    }
+	    state = SCANNING;
+		
+#ifdef DEBUG
+	    hklog(HK_DEBUG, "transitioned to state SCANNING\n");
+#endif
+	} else
+		
+	/* 
+	 *  if the "url" key in the object has been found, then
+	 *  we are at a ":" token, so skip to the next token by
+	 *  transitioning to the next state, FOUND_COLON.
+	 */
+	if (state == FOUND_URL_KEY) {
+	    state++;
+		    
+#ifdef DEBUG
+	    hklog(HK_DEBUG, "transitioned to state FOUND_COLON\n");
+#endif
+	} else
+		    
+		    
+	/*  we found a "url" key that doesn't contain an "_",
+	 *  so transition to the next state, FOUND_URL_KEY.
+	 */
+      	if ((strstr(token, "url") != NULL) && 
+	    strstr(token, "_") == NULL) {
+	    state++;
+			
+#ifdef DEBUG
+	    hklog(HK_DEBUG, "transitioned to state FOUND_URL_KEY\n");
+#endif
 	}
-      }
-      state = SCANNING;
 
-      #ifdef DEBUG
-      hklog(HK_DEBUG, "transitioned to state SCANNING\n");
-      #endif
-    } else
-      
-
-    /* 
-     *  if the "url" key in the object has been found, then
-     *  we are at a ":" token, so skip to the next token by
-     *  transitioning to the next state, FOUND_COLON.
-     */
-    if (state == FOUND_URL_KEY) {
-      state++;
-
-      #ifdef DEBUG
-      hklog(HK_DEBUG, "transitioned to state FOUND_COLON\n");
-      #endif
-    } else
-
-
-    /*  we found a "url" key that doesn't contain an "_",
-     *  so transition to the next state, FOUND_URL_KEY.
-     */
-    if ((strstr(token, "url") != NULL) && 
-    	strstr(token, "_") == NULL) {
-      state++;
-
-      #ifdef DEBUG
-      hklog(HK_DEBUG, "transitioned to state FOUND_URL_KEY\n");
-      #endif
+	token = strtok(NULL, SR_DELIM);
     }
 
-    token = strtok(NULL, SR_DELIM);
-  }
-  return SR_OK;
+    return SR_OK;
 }

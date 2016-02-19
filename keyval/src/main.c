@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
     keyval_t kv;
 
     if (argc < 3) {
-        hklog(HK_ERR, "Usage: keyval key val\n");
+        hkerr("Usage: keyval key val\n");
         return 1;
     }
     
@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     char* val = argv[2];
 
     set_keyval(&kv, key, val);
-    hklog(HK_INFO, "%s: %s\n", kv.key, kv.val);
+    hkinfo("%s: %s\n", kv.key, kv.val);
 
     destroy_keyval(&kv);
 

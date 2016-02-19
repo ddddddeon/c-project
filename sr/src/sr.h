@@ -13,8 +13,8 @@
 #define SR_URL_SUFFIX "/new.json?sort=new&limit="
 
 typedef struct {
-  char* data;
-  int offset;
+    char* data;
+    int offset;
 } sr_response_t;
 
 size_t sr_write_callback(void *buf, size_t size, size_t nmemb, void *p);
