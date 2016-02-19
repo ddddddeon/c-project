@@ -19,5 +19,11 @@ int main(int argc, char* argv[]) {
     hklog(HK_INFO, "bit tests passing!\n\n");
   }
 
+  if (ll_test() != HK_PASS) {
+      hklog(HK_ERR, "ll tests failing...!\n");
+  } else {
+      hklog(HK_INFO, "ll tests passing!\n\n");
+  }
+
   return result;
 }
