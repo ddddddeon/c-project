@@ -1,5 +1,4 @@
 #include "ll.h"
-#include "log.h"
 
 #include <malloc.h>
 
