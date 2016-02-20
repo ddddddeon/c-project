@@ -1,6 +1,7 @@
 #include "prime.h"
 
 #include <hk/core.h>
+#include <stdio.h>
 
 int is_prime(unsigned long long int n) {
     unsigned long long int i;
@@ -15,4 +16,19 @@ int is_prime(unsigned long long int n) {
 	return HK_TRUE;
     }
     return HK_FALSE;
+}
+
+void find_primes(unsigned long long int start, unsigned long long int end) {
+    unsigned long long int i;
+
+    if (start % 2 == 0) {
+	start = start + 1;
+    }
+
+    for (i=start; i <= end; i+=2) {
+	if (is_prime(i)) {
+	    printf("%llu\n", i);
+	}
+    }
+
 }

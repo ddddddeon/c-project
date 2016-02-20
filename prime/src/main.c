@@ -1,17 +1,14 @@
 #include "prime.h"
 
 #include <hk/core.h>
-#include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 
 int main(int argc, char* argv[]) {
     int num;
-    unsigned long long int i, 
-	                   start, 
-	                   end;
+    unsigned long long int start, end;
     
-    if (argc < 1) {
+    if (argc < 2) {
 	num = 0;
     } else {
 	num = atoi(argv[1]);
@@ -19,10 +16,11 @@ int main(int argc, char* argv[]) {
     
     switch(num) {
     case 0:
-	start = 0;
+	start = 100000001;
 	end = ULLONG_MAX;
+	break;
     case 1:
-	start = 0;
+	start = 1;
 	end = (ULLONG_MAX / 4) - 1;
 	break;
     case 2:
@@ -41,11 +39,7 @@ int main(int argc, char* argv[]) {
 	return HK_NOK;
     }
     
-    for (i=start; i <= end; i++) {
-	if (is_prime(i)) {
-	    printf("%llu\n", i);
-	}
-    }
-    
+    find_primes(start, end);
+
     return HK_OK;
 }
