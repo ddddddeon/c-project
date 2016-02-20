@@ -23,7 +23,7 @@ void find_primes(unsigned long long int start, unsigned long long int end) {
     unsigned long long int i;
 
     if (start % 2 == 0) {
-	start++
+	start++;
     }
 
     for (i=start; i <= end; i+=2) {
