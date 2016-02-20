@@ -7,8 +7,8 @@
 
 int main(int argc, char* argv[]) {  
     if (argc < 2) {
-	hk_fatal("must provide a permissions number!\n");
-	return 1;
+        hk_fatal("must provide a permissions number!\n");
+        return 1;
     }
     
     char* num = argv[1];

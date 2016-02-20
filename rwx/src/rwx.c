@@ -10,52 +10,52 @@
 
 void check_permissions(permissions p) {
     if (p.user & READ) {
-	printf("r");
+        printf("r");
     } else {
-	printf("-");
+        printf("-");
     }
     if (p.user & WRITE) {
-	printf("w");
+        printf("w");
     } else {
-	printf("-");
+        printf("-");
     }
     if (p.user & EXEC) {
-	printf("x");
+        printf("x");
     } else {
-	printf("-");
+        printf("-");
     }
     
     
     if (p.group & READ) {
-	printf("r");
+        printf("r");
     } else {
-	printf("-");
+        printf("-");
     }
     if (p.group & WRITE) {
-	printf("w");
+        printf("w");
     } else {
-	printf("-");
+        printf("-");
     }
     if (p.group & EXEC) {
-	printf("x");
+        printf("x");
     } else {
-	printf("-");
+        printf("-");
     }
     
     if (p.all & READ) {
-	printf("r");
+        printf("r");
     } else {
-	printf("-");
+        printf("-");
     }
     if (p.all & WRITE) {
-	printf("w");
+        printf("w");
     } else {
-	printf("-");
+        printf("-");
     }
     if (p.all & EXEC) {
-	printf("x");
+        printf("x");
     } else {
-	printf("-");
+        printf("-");
     }
     printf("\n");
 }
