@@ -15,7 +15,7 @@ typedef struct {
 
 typedef struct {
     gender_type gender;
-    pronouns pronouns;
+    pronouns *pronouns;
     char* name;
 } gender;
 

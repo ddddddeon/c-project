@@ -29,9 +29,9 @@ int main(void) {
 
     printf("%s:\n  %s (%s, %s, %s)\n  HP: %d\n  $: %d\n  level %d\n",
 	   p->name, p->gender->name, 
-	   p->gender->pronouns.nominative,
-	   p->gender->pronouns.oblique,
-	   p->gender->pronouns.possessive,
+	   p->gender->pronouns->nominative,
+	   p->gender->pronouns->oblique,
+	   p->gender->pronouns->possessive,
 	   p->hp, p->money, p->level);
 
     p->hp--;

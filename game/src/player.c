@@ -9,6 +9,7 @@ player *new_player(char name[32], char gender[32]) {
     if (new == NULL ||
 	strlen(name) > 32 ||
 	strlen(gender) > 32) {
+
 	return NULL;
     }
     
@@ -40,7 +41,7 @@ gender *new_gender(char g[32]) {
 	*p = (pronouns) { "they", "them", "their" };
     }
 
-    new->pronouns = *p;
+    new->pronouns = p;
     new->gender = gender;
     new->name = g;
 
@@ -68,6 +69,8 @@ gender_type str_to_gender_type(char g[32]) {
 }
 
 void destroy_player(player *p) {
+    free(p->gender->pronouns);
     free(p->gender);
     free(p->name);
+    free(p);
 }
