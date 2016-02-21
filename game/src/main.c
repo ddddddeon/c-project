@@ -17,16 +17,25 @@ int main(void) {
     int len = (int) strlen(player_name) - 1;
     strip_newline(player_name, len);
     
+
+
     unsigned int player_age = 0;
+    char ch;
+    int i = 0;
+
+    printf("your age: ");
     while (player_age == 0) {
-	printf("your age: ");
-	fgets(player_age_, 4, stdin);
-	flush_stdin();
-
-	len = (int) strlen(player_age_) - 1;
-	strip_newline(player_age_, len);
-
-	player_age = atoi(player_age_);
+        while ((ch = getchar()) != '\n' && ch  != EOF)  {
+            if (ch >= 48 && ch <= 58) {
+                player_age_[i] = ch;
+                i++;
+            } else {
+                flush_stdin();
+                printf("your age: ");
+            }
+        }
+        player_age_[i] = '\0';
+        player_age = atoi(player_age_);
     }
 
     printf("your gender: ");
@@ -44,7 +53,7 @@ int main(void) {
 
     printf("%s, %u:\n  %s (%s, %s, %s)\n  HP: %d\n  $: %d\n  level %d\n",
            p->name,
-	   p->age,
+           p->age,
            p->gender->name, 
            p->gender->pronouns->nominative,
            p->gender->pronouns->oblique,

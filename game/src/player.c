@@ -8,8 +8,8 @@ player *new_player(char name[32], unsigned int age, char gender[32]) {
     
     if (strlen(name)   > 32   ||
         strlen(gender) > 32   ||
-	age            == 0   ||
-	new            == NULL)  {
+        age            == 0   ||
+        new            == NULL)  {
 
         return NULL;
     }
