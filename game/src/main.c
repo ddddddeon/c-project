@@ -22,7 +22,7 @@ int main(void) {
 
     printf("your age: ");
     while (player_age == 0) {
-        while ((ch = getchar()) != '\n' && ch  != EOF)  {
+        while ((ch = getchar()) != '\n' && ch != EOF)  {
             if (ch >= 48 && ch <= 58) {
                 player_age_[i] = ch;
                 i++;
