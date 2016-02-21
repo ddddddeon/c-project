@@ -22,6 +22,7 @@ int main(void) {
 	printf("your age: ");
 	fgets(player_age_, 4, stdin);
 	flush_stdin();
+
 	len = (int) strlen(player_age_) - 1;
 	strip_newline(player_age_, len);
 
