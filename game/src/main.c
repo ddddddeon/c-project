@@ -10,15 +10,12 @@ int main(void) {
     char player_gender[32];
     char player_age_[4];
 
-
     printf("your name: ");
     fgets(player_name, 32, stdin);
 
     int len = (int) strlen(player_name) - 1;
     strip_newline(player_name, len);
     
-
-
     unsigned int player_age = 0;
     char ch;
     int i = 0;
