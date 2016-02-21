@@ -21,6 +21,7 @@ typedef struct {
 
 typedef struct {
     char *name;
+    unsigned int age;
     gender *gender;
     int hp;
     int money;
@@ -28,7 +29,7 @@ typedef struct {
 
 } player;
 
-player *new_player(char name[32], char gender[32]);
+player *new_player(char name[32], unsigned int age, char gender[32]);
 gender *new_gender(char g[32]);
 gender_type str_to_gender_type(char g[32]);
 void destroy_player(player *p);

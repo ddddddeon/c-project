@@ -3,17 +3,19 @@
 #include <malloc.h>
 #include <string.h>
 
-player *new_player(char name[32], char gender[32]) {
+player *new_player(char name[32], unsigned int age, char gender[32]) {
     player *new = malloc(sizeof(player));
     
-    if (new == NULL ||
-	strlen(name) > 32 ||
-	strlen(gender) > 32) {
+    if (new == NULL         ||
+        strlen(name)   > 32 ||
+        strlen(gender) > 32 ||
+	age            == 0 )  {
 
-	return NULL;
+        return NULL;
     }
     
     new->name = strdup(name);
+    new->age = age;
     new->gender = new_gender(gender);
     new->hp = 100;
     new->money = 100;
@@ -24,7 +26,7 @@ player *new_player(char name[32], char gender[32]) {
 
 gender *new_gender(char g[32]) {
     if (strlen(g) > 32) {
-	return NULL;
+        return NULL;
     }
     
     gender *new = malloc(sizeof(gender));
@@ -32,13 +34,25 @@ gender *new_gender(char g[32]) {
     gender_type gender = str_to_gender_type(g);
 
     if (gender == F) {
-	*p = (pronouns) { "she", "her", "her" };
+        *p = (pronouns) { 
+            "she", 
+            "her", 
+            "her" 
+        };
 
     } else if (gender == M) {
-	*p = (pronouns) { "he", "him", "his" };
+        *p = (pronouns) { 
+            "he", 
+            "him", 
+            "his" 
+        };
 
     } else {
-	*p = (pronouns) { "they", "them", "their" };
+        *p = (pronouns) { 
+            "they", 
+            "them", 
+            "their" 
+        };
     }
 
     new->pronouns = p;
@@ -51,20 +65,28 @@ gender *new_gender(char g[32]) {
 gender_type str_to_gender_type(char g[32]) {
     gender_type gender;
 
-    if (strcmp(g, "female") == 0 || strcmp(g, "woman") == 0||
-	       strcmp(g, "f") == 0 || strcmp(g, "F") == 0 ||
-	       strcmp(g, "girl") == 0 || strstr(g, "ess") != NULL) {
-	gender = F;
+    if (strcmp(g, "female") == 0  || 
+        strcmp(g, "woman")  == 0  ||
+        strcmp(g, "f")      == 0  ||
+        strcmp(g, "F")      == 0  ||
+        strcmp(g, "girl")   == 0  || 
+        strstr(g, "ess") != NULL  )  {
+
+        gender = F;
     
-    } else if (strcmp(g, "male") == 0 || strcmp(g, "man") == 0||
-	       strcmp(g, "m") == 0 || strcmp(g, "M") == 0||
-	       strcmp(g, "boy") == 0) {
-	gender = M;
+    } else if (strcmp(g, "male") == 0  || 
+               strcmp(g, "man")  == 0  ||
+               strcmp(g, "m")    == 0  || 
+               strcmp(g, "M")    == 0  ||
+               strcmp(g, "boy")  == 0  )  {
+
+        gender = M;
 
     } else {
-	gender = NB;
+
+        gender = NB;
     }
-    
+
     return gender;
 }
 
