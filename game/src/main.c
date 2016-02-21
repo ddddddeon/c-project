@@ -1,4 +1,5 @@
 #include "player.h"
+#include "item.h"
 #include "util.h"
 
 #include <stdio.h>
@@ -12,7 +13,7 @@ int main(void) {
 
     printf("your name: ");
     fgets(player_name, 32, stdin);
-
+    
     int len = (int) strlen(player_name) - 1;
     strip_newline(player_name, len);
     
@@ -60,8 +61,21 @@ int main(void) {
            p->level);
 
     p->hp--;
-    printf("HP: %d\n", p->hp);
+    printf("HP: %d \n", p->hp);
     
+    /* item test */
+    inventory *inv = new_inventory();
+    item *potion = new_item("potion", 5);
+    if (add_item(potion, inv) < 0) {
+        printf("inventory full!\n");
+    }
+    
+    unsigned int idx = inv->latest - 1;
+    printf("%s: $%d \n", inv->items[idx].name,
+           inv->items[idx].price);
+    remove_item(potion, inv);
+    destroy_inventory(inv);
+    //    free(potion);
     destroy_player(p);
     return 0;
 }
