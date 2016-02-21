@@ -27,7 +27,7 @@ item *new_item(char *name, unsigned int price) {
 }
 
 int add_item(item *i, inventory *inv) {
-    if (inv->latest >= 1024) {
+    if (inv->latest >= INVENTORY_LIMIT) {
         return -1;
     }
 

@@ -73,9 +73,11 @@ int main(void) {
     unsigned int idx = inv->latest - 1;
     printf("%s: $%d \n", inv->items[idx].name,
            inv->items[idx].price);
+
+    /* free memory */
     remove_item(potion, inv);
     destroy_inventory(inv);
-    //    free(potion);
     destroy_player(p);
+
     return 0;
 }
