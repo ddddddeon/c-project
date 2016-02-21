@@ -27,12 +27,16 @@ int main(void) {
 	return 1;
     }
 
-    printf("%s:\n  %s (%s, %s, %s)\n  %dhp\n  $%d\n  level %d\n",
+    printf("%s:\n  %s (%s, %s, %s)\n  HP: %d\n  $: %d\n  level %d\n",
 	   p->name, p->gender->name, 
 	   p->gender->pronouns.nominative,
 	   p->gender->pronouns.oblique,
 	   p->gender->pronouns.possessive,
 	   p->hp, p->money, p->level);
 
+    p->hp--;
+    printf("HP: %d\n", p->hp);
+    
+    destroy_player(p);
     return 0;
 }

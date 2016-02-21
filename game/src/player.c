@@ -38,7 +38,7 @@ gender *new_gender(char g[32]) {
 
     } else {
 	*p = (pronouns) { "they", "them", "their" };
-	}
+    }
 
     new->pronouns = *p;
     new->gender = gender;
@@ -65,4 +65,9 @@ gender_type str_to_gender_type(char g[32]) {
     }
     
     return gender;
+}
+
+void destroy_player(player *p) {
+    free(p->gender);
+    free(p->name);
 }
