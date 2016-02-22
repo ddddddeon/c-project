@@ -10,7 +10,6 @@ int main(int argc, char *argv[]) {
     char buf[BUFSIZE];
 
     if (argc != 2) {
-        printf("usage: cat <file>\n");
         fd = STDIN_FILENO;
 
     } else {
