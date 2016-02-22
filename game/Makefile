@@ -4,7 +4,7 @@ CFLAGS=--std=gnu99 -Wall $(LIBS) #-DDEBUG
 
 CC=gcc
 OUTFILE=bin/$(NAME)
-INFILES=$(wildcard src/*.c)
+INFILES= $(wildcard src/*.c) $(wildcard src/lib/*.c) $(wildcard src/screens/*.c)
 
 $(NAME): 
 	set -e; \
