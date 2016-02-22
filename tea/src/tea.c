@@ -21,12 +21,12 @@ void encrypt_chunk(uint32_t* v, uint32_t* k) {
 #endif
     
     for (i = 0; i < 32; i++) {
-	sum += delta;
-	v0 += ((v1<<4) + k0) ^ (v1 + sum) ^ ((v1>>5) + k1);
-	v1 += ((v0<<4) + k2) ^ (v0 + sum) ^ ((v0>>5) + k3);
-	
+        sum += delta;
+        v0 += ((v1<<4) + k0) ^ (v1 + sum) ^ ((v1>>5) + k1);
+        v1 += ((v0<<4) + k2) ^ (v0 + sum) ^ ((v0>>5) + k3);
+        
 #ifdef TEA_DEBUG
-	hk_debug("round %u: %u %u (sum %u)\n", i+1, v0, v1, sum);
+        hk_debug("round %u: %u %u (sum %u)\n", i+1, v0, v1, sum);
 #endif
     }
     v[0] = v0;
@@ -51,12 +51,12 @@ void decrypt_chunk(uint32_t* v, uint32_t* k) {
 #endif
     
     for (i=0; i < 32; i++) {
-	v1 -= ((v0<<4) + k2) ^ (v0 + sum) ^ ((v0>>5) + k3);
-	v0 -= ((v1<<4) + k0) ^ (v1 + sum) ^ ((v1>>5) + k1);
-	sum -= delta;
+        v1 -= ((v0<<4) + k2) ^ (v0 + sum) ^ ((v0>>5) + k3);
+        v0 -= ((v1<<4) + k0) ^ (v1 + sum) ^ ((v1>>5) + k1);
+        sum -= delta;
 	
 #ifdef TEA_DEBUG
-	hk_debug("round %u: %u %u (sum %u)\n", i+1, v0, v1, sum);
+        hk_debug("round %u: %u %u (sum %u)\n", i+1, v0, v1, sum);
 #endif
     }
     v[0] = v0;
@@ -69,23 +69,23 @@ void encrypt(uint32_t* v, uint32_t* k) {
     uint32_t chunk[2];
     
     for (i = 0; i < v_length; i += 2) {    
-	chunk[0] = v[i];
-	chunk[1] = v[i+1];
+        chunk[0] = v[i];
+        chunk[1] = v[i+1];
 	
 #ifdef TEA_DEBUG
-	hk_debug("%c %c\n", chunk[0], chunk[1]);
-	hk_debug("%d %d\n", chunk[0], chunk[1]);
+        hk_debug("%c %c\n", chunk[0], chunk[1]);
+        hk_debug("%d %d\n", chunk[0], chunk[1]);
 #endif
-	hk_debug("v[i]: %d, chunk[0]: %d\n", sizeof(v[i]), sizeof(chunk[0]));
-	encrypt_chunk(chunk, (uint32_t *) k);
+        hk_debug("v[i]: %d, chunk[0]: %d\n", sizeof(v[i]), sizeof(chunk[0]));
+        encrypt_chunk(chunk, (uint32_t *) k);
 	
 #ifdef TEA_DEBUG
-	hk_debug("%c %c\n", chunk[0], chunk[1]);
-	hk_debug("%d %d\n", chunk[0], chunk[1]);
+        hk_debug("%c %c\n", chunk[0], chunk[1]);
+        hk_debug("%d %d\n", chunk[0], chunk[1]);
 #endif
 	
-	v[i] = chunk[0];
-	v[i+1] = chunk[1];
+        v[i] = chunk[0];
+        v[i+1] = chunk[1];
     }
 }
 
@@ -94,6 +94,6 @@ void decrypt(uint32_t* v, uint32_t* k) {
     int v_length = sizeof(v) / sizeof(v[0]);
     
     for (i = 0; i < v_length; i += 2) {
-	hk_debug("%c %c\n", v[i], v[i+1]);
+        hk_debug("%c %c\n", v[i], v[i+1]);
     }
 }

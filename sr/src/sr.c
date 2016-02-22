@@ -11,8 +11,8 @@ size_t sr_write_callback(void *buf, size_t size, size_t nmemb, void *p) {
     sr_response_t *response = (sr_response_t *) p;
     
     if (response->offset + (size * nmemb) >= SR_BUFFER_SIZE -1) {
-	hk_err("buffer too small!\n");
-	return 0;
+        hk_err("buffer too small!\n");
+        return 0;
     }
     
     memcpy(response->data + response->offset, buf, size * nmemb);
@@ -32,21 +32,21 @@ int sr_geturl(char *url, void *p) {
     curl_global_init(CURL_GLOBAL_ALL);
     
     if ((curl = curl_easy_init()) != NULL) {
-	curl_easy_setopt(curl, CURLOPT_URL, url);
-	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, sr_write_callback);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, p);
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, sr_write_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, p);
+        
+        if ((res = curl_easy_perform(curl)) > SR_OK) {
+            return (int) res;
+        }
 	
-	if ((res = curl_easy_perform(curl)) > SR_OK) {
-	    return (int) res;
-	}
-	
-	curl_easy_cleanup(curl);
-	curl_global_cleanup();
-	return SR_OK;
+        curl_easy_cleanup(curl);
+        curl_global_cleanup();
+        return SR_OK;
     } else {
-	hk_err("unknown curl init error\n");
-	return SR_NOK;
+        hk_err("unknown curl init error\n");
+        return SR_NOK;
     }
 }
 
@@ -64,17 +64,17 @@ int sr_getsubreddit(char *subreddit, int limit) {
     
     char* buffer = malloc(SR_BUFFER_SIZE);
     if (!buffer) {
-	hk_fatal("error allocating %d bytes!\n", SR_BUFFER_SIZE);
-	return SR_NOK;
+        hk_fatal("error allocating %d bytes!\n", SR_BUFFER_SIZE);
+        return SR_NOK;
     }
     
     sr_response_t response = {
-	.data = buffer,
-	.offset = 0
+        .data = buffer,
+        .offset = 0
     }; 
     
     if ((res = sr_geturl(url, &response)) > SR_OK) {
-	return (int) res;
+        return (int) res;
     }
     
     response.data[response.offset] = '\0';
