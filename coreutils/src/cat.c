@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     }
 
     int n;
-    while((n = read(fd, buf, BUFSIZE)) > 0) {
+    while ((n = read(fd, buf, BUFSIZE)) > 0) {
         write(STDOUT_FILENO, buf, n);
     }
     
