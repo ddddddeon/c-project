@@ -4,6 +4,8 @@ CFLAGS=-Wall $(LIBS) #-DDEBUG
 
 CC=gcc
 
+all: ls cat
+
 ls: 
 	set -e; \
 	rm src/*~ src/\#* 2>/dev/null || true; \
@@ -16,4 +18,3 @@ cat:
 	if [ ! -d bin ]; then mkdir bin; fi; \
 	$(CC) -o bin/cat src/cat.c $(CFLAGS)
 
-all: ls cat
