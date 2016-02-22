@@ -6,27 +6,29 @@
 #define BUFSIZE 1024
 
 int main(int argc, char *argv[]) {
+    int fd;
     char buf[BUFSIZE];
 
     if (argc != 2) {
         printf("usage: cat <file>\n");
-        return 1;
-    }
+        fd = STDIN_FILENO;
 
-    if (strlen(argv[1]) > BUFSIZE) {
-        printf("pathname too long\n");
-        return 1;
-    }
+    } else {
+        if (strlen(argv[1]) > BUFSIZE) {
+            printf("pathname too long\n");
+            return 1;
+        }
 
-    int fd = open(argv[1], O_RDONLY);
-    if (fd < 0) {
-        printf("could not open %s\n", argv[1]);
-        return 1;
+        fd = open(argv[1], O_RDONLY);
+        if (fd < 0) {
+            printf("could not open %s\n", argv[1]);
+            return 1;
+        }
     }
 
     int n;
     while((n = read(fd, buf, BUFSIZE)) > 0) {
-        write(1, buf, n);
+        write(STDOUT_FILENO, buf, n);
     }
     
     close(fd);
