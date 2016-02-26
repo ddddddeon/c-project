@@ -18,6 +18,9 @@ int main(int argc, char* argv[]) {
     }
     
     switch(num) {
+    case 0:
+	start = 0;
+	end = ULLONG_MAX;
     case 1:
 	start = 0;
 	end = (ULLONG_MAX / 4) - 1;
@@ -32,7 +35,7 @@ int main(int argc, char* argv[]) {
 	break;
     case 4:
 	start = ULLONG_MAX / 2 + ULLONG_MAX / 4;
-	end = ULLONG_MAX;;
+	end = ULLONG_MAX;
 	break;
     default:
 	return HK_NOK;
