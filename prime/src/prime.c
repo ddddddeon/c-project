@@ -8,13 +8,13 @@ int is_prime(unsigned long long int n) {
     unsigned long long int i;
     for (i=2; i < n; i++) {
 
-	if (n % i == 0) {
-	    return HK_FALSE;
-	} 
+        if (n % i == 0) {
+            return HK_FALSE;
+        } 
     }
 
     if (i == n) {
-	return HK_TRUE;
+        return HK_TRUE;
     }
     return HK_FALSE;
 }
@@ -23,13 +23,12 @@ void find_primes(unsigned long long int start, unsigned long long int end) {
     unsigned long long int i;
 
     if (start % 2 == 0) {
-	start++;
+        start++;
     }
 
     for (i=start; i <= end; i+=2) {
-	if (is_prime(i)) {
-	    printf("%llu\n", i);
-	}
+        if (is_prime(i)) {
+            printf("%llu\n", i);
+        }
     }
-
 }
