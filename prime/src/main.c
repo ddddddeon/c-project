@@ -1,4 +1,4 @@
-k#include "prime.h"
+#include "prime.h"
 
 #include <hk/core.h>
 #include <limits.h>
