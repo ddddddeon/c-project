@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
         strcpy(path, argv[1]);
     }
 
-    if ((dp = opendir(path)) == NULL) {
+    dp = opendir(path);
+    if (dp == NULL) {
         printf("can't open directory\n");
         return 1;
     }
