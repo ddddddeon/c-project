@@ -4,8 +4,6 @@
 #include <string.h>
 
 player *new_player(char name[32], unsigned int age, char gender[32]) {
-    player *new = malloc(sizeof(player));
-    
     if (strlen(name)   > 32   ||
         strlen(gender) > 32   ||
         age            == 0   ||
@@ -13,6 +11,8 @@ player *new_player(char name[32], unsigned int age, char gender[32]) {
 
         return NULL;
     }
+
+    player *new = malloc(sizeof(player));
     
     new->name = strdup(name);
     new->age = age;
