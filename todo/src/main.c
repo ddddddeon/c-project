@@ -43,6 +43,7 @@ int main(int argc, char* argv[]) {
                 hk_err("must provide an entry to add\n");
                 return HK_NOK;
             }
+
             reply = redisCommand(c, "LPUSH " NAMESPACE " %s", key_string);
             freeReplyObject(reply);
             break;
@@ -74,13 +75,12 @@ int main(int argc, char* argv[]) {
             freeReplyObject(reply);
             break;
         }
-
     } while (next != -1);
        
     reply = redisCommand(c, "LRANGE " NAMESPACE " 0 -1");
     
-    int i = 0;
-    for (/* void */; i < reply->elements; i++) { 
+    int i;
+    for (i = 0; i < reply->elements; i++) { 
         printf("%d) %s\n", i + 1, reply->element[i]->str);
     }
     
