@@ -11,16 +11,17 @@ int main(int argc, char* argv[]) {
         return HK_NOK;
     }
     
-    const char *short_opts = "lard";
+    const char *short_opts = "laird";
     const struct option long_opts[] = {
-        { "list", 0, NULL, 'l' },
-        { "add", 0, NULL, 'a' },
-        { "rm", 0, NULL, 'r' },
-        { "del", 0, NULL, 'd' },
-        { NULL,      0, NULL,  0  }
+        { "list",   0, NULL, 'l' },
+        { "add",    0, NULL, 'a' },
+        { "insert", 0, NULL, 'i' },
+        { "remove", 0, NULL, 'r' },
+        { "delete", 0, NULL, 'd' },
+        { NULL,     0, NULL,  0  }
     };
     
-    char  key_string[1024];
+    char key_string[1024];
     if (argv[2]) {
         strncpy(key_string, argv[2], sizeof(key_string));
     }
@@ -34,6 +35,7 @@ int main(int argc, char* argv[]) {
         switch (next) {
 
         case 'a':
+        case 'i':
             if (!argv[2]) {
                 hk_err("must provide an entry to add\n");
                 return HK_NOK;
