@@ -22,6 +22,7 @@ int main(int argc, char* argv[]) {
     };
     
     char key_string[1024];
+
     if (argv[2]) {
         strncpy(key_string, argv[2], sizeof(key_string));
     }
