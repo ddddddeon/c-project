@@ -69,8 +69,10 @@ int main(int argc, char* argv[]) {
             entry = redisCommand(c, "LINDEX tasks %d", index - 1);
             reply = redisCommand(c, "LREM tasks 1 %s", entry->str);
             freeReplyObject(entry);
+            freeReplyObject(reply);
             break;
         }
+
     } while (next != -1);
        
     reply = redisCommand(c, "LRANGE tasks 0 -1");
@@ -81,5 +83,6 @@ int main(int argc, char* argv[]) {
     }
     
     freeReplyObject(reply);
+    redisFree(c);
     return HK_OK;
 }
