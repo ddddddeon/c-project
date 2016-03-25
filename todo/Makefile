@@ -1,4 +1,4 @@
-NAME=red
+NAME=todo
 LIBS=-lhk -lhiredis
 CFLAGS=-Wall $(LIBS) #-DDEBUG
 
