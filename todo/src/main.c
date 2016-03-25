@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define NAMESPACE "todo:tasks"
+
 int main(int argc, char* argv[]) {
     redisContext *c = redisConnect("127.0.0.1", 6379);
     if (c != NULL && c->err) {
@@ -41,7 +43,7 @@ int main(int argc, char* argv[]) {
                 hk_err("must provide an entry to add\n");
                 return HK_NOK;
             }
-            reply = redisCommand(c, "LPUSH todo:tasks %s", key_string);
+            reply = redisCommand(c, "LPUSH " NAMESPACE " %s", key_string);
             freeReplyObject(reply);
             break;
 
@@ -58,7 +60,7 @@ int main(int argc, char* argv[]) {
             }
 
             redisReply *numTasks;
-            numTasks = redisCommand(c, "LLEN todo:tasks");
+            numTasks = redisCommand(c, "LLEN " NAMESPACE);
             if (index > numTasks->integer) {
                 hk_err("no entry at index %d\n", index);
                 return HK_NOK;
@@ -66,8 +68,8 @@ int main(int argc, char* argv[]) {
             freeReplyObject(numTasks);
 
             redisReply *entry;
-            entry = redisCommand(c, "LINDEX todo:tasks %d", index - 1);
-            reply = redisCommand(c, "LREM todo:tasks 1 %s", entry->str);
+            entry = redisCommand(c, "LINDEX " NAMESPACE " %d", index - 1);
+            reply = redisCommand(c, "LREM " NAMESPACE " 1 %s", entry->str);
             freeReplyObject(entry);
             freeReplyObject(reply);
             break;
@@ -75,7 +77,7 @@ int main(int argc, char* argv[]) {
 
     } while (next != -1);
        
-    reply = redisCommand(c, "LRANGE todo:tasks 0 -1");
+    reply = redisCommand(c, "LRANGE " NAMESPACE " 0 -1");
     
     int i = 0;
     for (/* void */; i < reply->elements; i++) { 
