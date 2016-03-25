@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
                 hk_err("must provide an entry to add\n");
                 return HK_NOK;
             }
-            reply = redisCommand(c, "LPUSH tasks %s", key_string);
+            reply = redisCommand(c, "LPUSH todo:tasks %s", key_string);
             freeReplyObject(reply);
             break;
 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
             }
 
             redisReply *numTasks;
-            numTasks = redisCommand(c, "LLEN tasks");
+            numTasks = redisCommand(c, "LLEN todo:tasks");
             if (index > numTasks->integer) {
                 hk_err("no entry at index %d\n", index);
                 return HK_NOK;
@@ -66,8 +66,8 @@ int main(int argc, char* argv[]) {
             freeReplyObject(numTasks);
 
             redisReply *entry;
-            entry = redisCommand(c, "LINDEX tasks %d", index - 1);
-            reply = redisCommand(c, "LREM tasks 1 %s", entry->str);
+            entry = redisCommand(c, "LINDEX todo:tasks %d", index - 1);
+            reply = redisCommand(c, "LREM todo:tasks 1 %s", entry->str);
             freeReplyObject(entry);
             freeReplyObject(reply);
             break;
@@ -75,11 +75,11 @@ int main(int argc, char* argv[]) {
 
     } while (next != -1);
        
-    reply = redisCommand(c, "LRANGE tasks 0 -1");
+    reply = redisCommand(c, "LRANGE todo:tasks 0 -1");
     
     int i = 0;
     for (/* void */; i < reply->elements; i++) { 
-        printf("%d. %s\n", i + 1, reply->element[i]->str);
+        printf("%d) %s\n", i + 1, reply->element[i]->str);
     }
     
     freeReplyObject(reply);
