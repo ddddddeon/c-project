@@ -26,3 +26,7 @@ install:
 all: $(NAME) findBin install
 
 rebuild: clean $(NAME) install
+
+indent:
+	@which indent >/dev/null 2>&1 || \
+	indent -kr --no-tabs src/*.c

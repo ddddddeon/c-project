@@ -6,33 +6,34 @@
 
 #define NAMESPACE "todo:tasks"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     redisContext *c = redisConnect("127.0.0.1", 6379);
     if (c != NULL && c->err) {
         hk_fatal("failed to connect to redis: %s\n", c->errstr);
         return HK_NOK;
     }
-    
+
     const char *short_opts = "laird";
     const struct option long_opts[] = {
-        { "list",   0, NULL, 'l' },
-        { "add",    0, NULL, 'a' },
-        { "insert", 0, NULL, 'i' },
-        { "remove", 0, NULL, 'r' },
-        { "delete", 0, NULL, 'd' },
-        { NULL,     0, NULL,  0  }
+        {"list",   0, NULL, 'l'},
+        {"add",    0, NULL, 'a'},
+        {"insert", 0, NULL, 'i'},
+        {"remove", 0, NULL, 'r'},
+        {"delete", 0, NULL, 'd'},
+        { NULL,    0, NULL,  0 }
     };
-    
+
     char key_string[1024];
 
     if (argv[2]) {
         strncpy(key_string, argv[2], sizeof(key_string));
     }
-    
+
     redisReply *reply;
     int next;
     int index;
-    
+
     do {
         next = getopt_long(argc, argv, short_opts, long_opts, NULL);
         switch (next) {
@@ -76,14 +77,14 @@ int main(int argc, char* argv[]) {
             break;
         }
     } while (next != -1);
-       
+
     reply = redisCommand(c, "LRANGE " NAMESPACE " 0 -1");
-    
+
     int i;
-    for (i = 0; i < reply->elements; i++) { 
+    for (i = 0; i < reply->elements; i++) {
         printf("%d) %s\n", i + 1, reply->element[i]->str);
     }
-    
+
     freeReplyObject(reply);
     redisFree(c);
     return HK_OK;
